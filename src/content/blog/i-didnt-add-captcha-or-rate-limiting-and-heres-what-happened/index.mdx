@@ -1,0 +1,124 @@
+---
+title: "I Didn't Add CAPTCHA or Rate Limiting and Here's What Happened"
+description: "The consequences of neglecting CAPTCHA and rate limiting in web applications. Learn from my experience as I share the challenges faced, lessons learned, and best practices for securing your applications against bots and abuse."
+pubDate: "2026-01-13"
+heroImage: "./assets/hero.jpg"
+---
+
+Neglecting CAPTCHA and rate limiting in web applications can lead to serious consequences. In this post, I will share what happened when I skipped these essential security measures, the challenges I ran into, and the lessons I learned along the way.
+
+## Early Mistake
+
+When I first built my application, my focus was on creating a smooth and frictionless experience for users. In my eagerness to launch, I skipped implementing CAPTCHA and rate limiting. I assumed my app would not attract bots or malicious traffic, and I worried that adding extra checks might annoy real users. That assumption turned out to be an expensive mistake.
+
+## The System Gets Flooded
+
+At an unexpected point, the application began experiencing abnormal activity. Traffic spikes went unnoticed due to the absence of monitoring alerts, and the issue only became apparent when a large volume of posts suddenly flooded the system. Without CAPTCHA to verify human users or rate limiting to restrict request frequency, the app became an easy target for automated scripts that continuously sent requests, resulting in spam and abusive content overwhelming the platform.
+
+```js
+while (true) {
+  fetch("https://myapp.com/api/post", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      // spam content
+    }),
+  });
+}
+```
+
+This level of abuse required no specialized tools or advanced automation. A simple loop repeatedly sending requests was enough to overwhelm the system because there were no safeguards in place to distinguish automated traffic from legitimate users. If the issue isn't detected in time, the system could be flooded with spam posts and reach its resource limits.
+
+Without rate limiting and with minimal effort,the server accepted every request regardless of frequency. As a result, a single script was able to generate an excessive number of posts in a short period of time, flooding the application with spam and offensive content before the issue was detected.
+
+## How I Solved It
+
+### Immediate Damage Control
+
+First, I enabled Vercel's built-in Firewall feature, specifically Attack Mode, to challenge all incoming traffic. This helped block a significant portion of the malicious requests. Next, I wrote a script using Prisma, my ORM, to delete spam posts from the database that bypassed any content filters I had in place. I had to write it quickly because the message content was too inappropriate.
+
+```js
+import { prisma } from "@/lib/db";
+
+await prisma.post.deleteMany({
+  where: {
+    body: "Spam content to be deleted",
+  },
+});
+```
+
+### Implementing Rate Limiting
+
+Next, I implemented rate limiting using a middleware solution to restrict the number of requests a user can make within a given time frame, utilizing the [rate-limiter-flexible](https://www.npmjs.com/package/rate-limiter-flexible) package. This helped prevent a single user or IP address from overwhelming the system with requests using fixed windows, and use Redis to store request counts to make it resistant to server restarts.
+
+```ts
+import Redis from "ioredis";
+import { RateLimiterRedis } from "rate-limiter-flexible";
+
+const redis = new Redis();
+const rateLimiter = new RateLimiterRedis({
+  storeClient: redis,
+  points: 20, // 20 requests
+  duration: 60, // per 60 seconds
+  blockDuration: 60, // block for 60 seconds if exceeded
+});
+
+export async function middleware(request: NextRequest) {
+  const clientIp =
+    request.headers.get("x-forwarded-for") ?? "unknown";
+
+  try {
+    await rateLimiter.consume(clientIp);
+    return NextResponse.next();
+  } catch {
+    return NextResponse.json(
+      { message: "Rate limit exceeded. Please try again later." },
+      { status: 429 },
+    );
+  }
+}
+```
+
+### Adding CAPTCHA Verification
+
+Finally, I integrated [Cloudflare Turnstile](https://developers.cloudflare.com/turnstile/) as a CAPTCHA solution to verify that users were human before allowing them to submit posts. Turnstile is a user-friendly CAPTCHA without the traditional challenges, making it less interruptive for users.
+
+```tsx
+// Client side
+import { Turnstile } from "@marsidev/react-turnstile";
+
+<Turnstile
+  siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+  onVerify={(token) => {
+    console.log("CAPTCHA verified with token:", token);
+  }}
+/>;
+```
+
+Turnstile component can be rendered invisible, so it doesn't disrupt the user experience, it returns a token upon successful verification that can be sent to the server for validation.
+
+```ts
+// Server side
+export async function validateTurnstile(token: string) {
+  const response = await fetch(
+    "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        secret: process.env.TURNSTILE_SECRET_KEY,
+        response: token,
+      }),
+    },
+  );
+
+  const result = await response.json();
+  return result.success;
+}
+```
+
+On the server side, the function validate the token by sending it to Cloudflare's verification endpoint. If the token is valid and the challenge was completed legitimately, the API returns a success response, allowing the post to proceed.
+
+## Lessons Learned
+
+Don't wait for an attack to take security seriously. A few lines of code today can save you hours of cleanup tomorrow. Never assume your app is too small to be targeted. Implementing rate limiting early is easier than cleaning up spam.
