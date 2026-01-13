@@ -8,7 +8,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const canonicalHref = canonicalURL.toString().replace(/\/$/, "");
 
 const gallery = (await getCollection("gallery")).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 ---
 
