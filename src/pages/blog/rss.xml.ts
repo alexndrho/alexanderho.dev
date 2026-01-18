@@ -23,7 +23,8 @@ export async function GET(context: APIContext) {
         // Compute RSS link from post `slug`
         // This example assumes all posts are rendered as `/blog/[slug]` routes
         link: `/blog/${post.slug}/`,
-      })),
+      }))
+      .sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime()),
     stylesheet: "/pretty-feed-v3.xsl",
   });
 }
