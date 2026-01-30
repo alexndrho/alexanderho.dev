@@ -1,38 +1,91 @@
+---
+import LocalTime from "../LocalTime.astro";
+---
+
 <section id="about" class="section">
   <div class="container container--section">
     <h2>About me</h2>
-    <p class="about__p">
-      Hello, I'm Alexander Gabriel Ho. I'm a web developer who enjoys building
-      things for the web and figuring out how they work. I focus on the small
-      details that make a website polished, easy to use, and nice to look at.
-    </p>
-    <p class="about__p">
-      Most of my work is on web applications, where I focus on clean structure
-      and code that's easy to maintain. I like to keep things simple and clear,
-      so both users and other developers can understand and use them easily.
-    </p>
-    <p class="about__p">
-      I began learning programming in 2021. Initially, I was uncertain about
-      what to study and how to proceed, but this confusion developed into a
-      curiosity about the learning process. This curiosity led me to explore web
-      development and continues to influence how I approach projects.
-    </p>
-    <p class="about__p">
-      Over time, my interest evolved into building platforms that enable people
-      to express themselves freely online. I am especially committed to creating
-      accessible projects that promote openness, community, and honest
-      expression.
-    </p>
-    <p class="about__p">
-      At the end of the day, I really enjoy seeing how people use the stuff I
-      build and finding little ways to make those experiences feel natural and
-      enjoyable. For me, coding's just as much about experimenting and learning
-      as it is about building, and I'm always looking for new ways to do both.
-    </p>
+
+    <div class="about__container">
+      <div class="about__meta">
+        <LocalTime size="lg" />
+      </div>
+
+      <div class="about__content">
+        <p class="about__p">
+          Hello, I'm Alexander Gabriel Ho. I'm a web developer who enjoys
+          building things for the web and figuring out how they work. I focus on
+          the small details that make a website polished, easy to use, and nice
+          to look at.
+        </p>
+        <p class="about__p">
+          Most of my work is on web applications, where I focus on clean
+          structure and code that's easy to maintain. I like to keep things
+          simple and clear, so both users and other developers can understand
+          and use them easily.
+        </p>
+        <p class="about__p">
+          I began learning programming in 2021. Initially, I was uncertain about
+          what to study and how to proceed, but this confusion developed into a
+          curiosity about the learning process. This curiosity led me to explore
+          web development and continues to influence how I approach projects.
+        </p>
+        <p class="about__p">
+          Over time, my interest evolved into building platforms that enable
+          people to express themselves freely online. I am especially committed
+          to creating accessible projects that promote openness, community, and
+          honest expression.
+        </p>
+        <p class="about__p">
+          At the end of the day, I really enjoy seeing how people use the stuff
+          I build and finding little ways to make those experiences feel natural
+          and enjoyable. For me, coding's just as much about experimenting and
+          learning as it is about building, and I'm always looking for new ways
+          to do both.
+        </p>
+      </div>
+    </div>
   </div>
 </section>
 
 <style>
+  .about__container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .about__container::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+
+  .about__meta {
+    float: none;
+    margin: 0 0 var(--spacing-sm);
+    order: 2;
+  }
+
+  .about__content {
+    order: 1;
+  }
+
+  @media (--lg-viewport) {
+    .about__container {
+      display: block;
+    }
+
+    .about__meta {
+      float: right;
+      margin: 0 0 var(--spacing-sm) var(--spacing-md);
+      order: 0;
+    }
+
+    .about__content {
+      order: 0;
+    }
+  }
+
   .about__p {
     font-weight: 500;
     text-align: justify;

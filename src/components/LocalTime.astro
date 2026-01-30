@@ -1,0 +1,210 @@
+---
+import { TbClock, TbMapPin } from "react-icons/tb";
+
+const {
+  label = "Local time",
+  location = "Philippines",
+  timeZone = "Asia/Manila",
+  locale = "en-US",
+  showSeconds = true,
+  showDate = true,
+  size = "md",
+  class: className,
+} = Astro.props;
+---
+
+<div
+  class:list={["local-time", `local-time--${size}`, className]}
+  data-local-time-root
+  data-time-zone={timeZone}
+  data-locale={locale}
+  data-show-seconds={showSeconds}
+  data-show-date={showDate}
+>
+  <p class="local-time__label">
+    <TbClock />
+    <span class="local-time__label-text">{label}</span>
+  </p>
+  <p data-local-time class="local-time__value">--:--</p>
+  <p class="local-time__location">
+    <TbMapPin />
+    {location}
+  </p>
+  {
+    showDate && (
+      <p data-local-day class="local-time__day">
+        ---
+      </p>
+    )
+  }
+</div>
+
+<script type="module">
+  let localTimeInitialized = false;
+
+  if (!localTimeInitialized) {
+    localTimeInitialized = true;
+
+    const INTERVAL_KEY = "__localTimeInterval";
+
+    const createFormatters = (locale, timeZone, showSeconds) => {
+      const timeFormatter = new Intl.DateTimeFormat(locale, {
+        timeZone,
+        hour: "2-digit",
+        minute: "2-digit",
+        ...(showSeconds ? { second: "2-digit" } : {}),
+        hour12: true,
+      });
+
+      const dateFormatter = new Intl.DateTimeFormat(locale, {
+        timeZone,
+        weekday: "long",
+        month: "long",
+        day: "numeric",
+      });
+
+      return { timeFormatter, dateFormatter };
+    };
+
+    const stopForRoot = (root) => {
+      const existing = root[INTERVAL_KEY];
+      if (existing) {
+        window.clearInterval(existing);
+        root[INTERVAL_KEY] = null;
+      }
+    };
+
+    const startForRoot = (root) => {
+      stopForRoot(root);
+
+      const timeEl = root.querySelector("[data-local-time]");
+      if (!timeEl) return;
+
+      const dayEl = root.querySelector("[data-local-day]");
+      const timeZone = root.dataset.timeZone || "Asia/Manila";
+      const locale = root.dataset.locale || "en-US";
+      const showSeconds = root.dataset.showSeconds !== "false";
+      const showDate = root.dataset.showDate !== "false";
+      const { timeFormatter, dateFormatter } = createFormatters(
+        locale,
+        timeZone,
+        showSeconds,
+      );
+
+      const update = () => {
+        const now = new Date();
+        timeEl.textContent = timeFormatter.format(now);
+        if (showDate && dayEl) {
+          dayEl.textContent = dateFormatter.format(now);
+        }
+      };
+
+      update();
+      root[INTERVAL_KEY] = window.setInterval(update, 1000);
+    };
+
+    const initAll = () => {
+      document
+        .querySelectorAll("[data-local-time-root]")
+        .forEach((root) => startForRoot(root));
+    };
+
+    const stopAll = () => {
+      document
+        .querySelectorAll("[data-local-time-root]")
+        .forEach((root) => stopForRoot(root));
+    };
+
+    initAll();
+    document.addEventListener("astro:before-swap", stopAll);
+    document.addEventListener("astro:page-load", initAll);
+  }
+</script>
+
+<style>
+  .local-time {
+    --local-time-padding: var(--spacing-md);
+    --local-time-value-size: var(--font-size-3xl);
+    --local-time-font-size: var(--font-size-md);
+    --local-time-label-margin: 0.5rem;
+    --local-time-margin: 0.25rem;
+
+    background-color: var(--color-light);
+    padding: var(--local-time-padding);
+    box-shadow: var(--box-shadow);
+    border-radius: var(--border-radius-md);
+    border: 1px solid var(--color-light-darker);
+
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .local-time__label {
+    margin: 0 0 var(--local-time-label-margin) 0;
+    font-size: var(--local-time-font-size);
+    color: var(--color-secondary);
+    line-height: 1;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .local-time__label-text {
+    line-height: 1;
+  }
+
+  .local-time__value {
+    margin: 0;
+    display: inline-block;
+    font-family: var(--font-family-mono);
+    font-size: var(--local-time-value-size);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .local-time__location {
+    margin: var(--local-time-margin) 0 0 0;
+    font-size: var(--local-time-font-size);
+    color: var(--color-secondary);
+    font-weight: 600;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .local-time__day {
+    margin: var(--local-time-margin) 0 0 0;
+    font-size: var(--local-time-font-size);
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--color-secondary);
+    font-weight: 600;
+  }
+
+  .local-time--xs {
+    --local-time-padding: var(--spacing-xs);
+    --local-time-font-size: var(--font-size-sm);
+    --local-time-value-size: var(--font-size-xl);
+  }
+
+  .local-time--sm {
+    --local-time-padding: var(--spacing-sm);
+    --local-time-font-size: var(--font-size-md);
+    --local-time-value-size: var(--font-size-2xl);
+  }
+
+  .local-time--lg {
+    --local-time-padding: var(--spacing-lg);
+    --local-time-font-size: var(--font-size-lg);
+    --local-time-value-size: var(--font-size-4xl);
+  }
+
+  .local-time--xl {
+    --local-time-padding: var(--spacing-lg);
+    --local-time-font-size: var(--font-size-xl);
+    --local-time-value-size: var(--font-size-5xl);
+  }
+</style>
