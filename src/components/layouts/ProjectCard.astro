@@ -35,10 +35,10 @@ const computedUrl = (liveLink || "http://localhost:3000").replace(
         <span></span>
       </div>
 
-      <div aria-label="website url" class="card__url-txt">
+      <p aria-label="website url" class="card__url-bar">
         <FaLock />
-        {computedUrl}
-      </div>
+        <span class="card__url-label">{computedUrl}</span>
+      </p>
     </div>
     <Image src={image} alt="project-preview" class="card__img" />
   </div>
@@ -159,13 +159,9 @@ const computedUrl = (liveLink || "http://localhost:3000").replace(
     background-color: var(--color-success);
   }
 
-  .card__url-txt {
+  .card__url-bar {
     font-size: var(--font-size-xs);
     width: 65%;
-
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 
     margin: 0 auto 0;
     padding: 0.25em 0.5em;
@@ -177,6 +173,12 @@ const computedUrl = (liveLink || "http://localhost:3000").replace(
     display: flex;
     align-items: center;
     gap: 0.5em;
+  }
+
+  .card__url-label {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .card__img {
