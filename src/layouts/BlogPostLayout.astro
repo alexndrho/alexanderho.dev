@@ -132,19 +132,28 @@ const {
   <script>
     document.addEventListener("astro:page-load", () => {
       const progressBar = document.querySelector(
-        "progress",
-      ) as HTMLProgressElement;
+        ".progress-bar",
+      ) as HTMLDivElement | null;
+      const progressFill = document.querySelector(
+        ".progress-bar__fill",
+      ) as HTMLDivElement | null;
 
-      const target = document.querySelector("main");
+      if (!progressBar || !progressFill) return;
 
-      window.addEventListener("scroll", () => {
-        const scrollableHeight = target
-          ? target.scrollHeight - window.innerHeight
+      const updateProgress = () => {
+        const scrollableHeight =
+          document.documentElement.scrollHeight - window.innerHeight;
+        const progress = scrollableHeight
+          ? window.scrollY / scrollableHeight
           : 0;
-        const scrolled = (window.scrollY / scrollableHeight) * 100;
+        const percent = Math.min(100, Math.max(0, progress * 100));
 
-        progressBar.value = scrolled;
-      });
+        progressFill.style.width = `${percent}%`;
+        progressBar.setAttribute("aria-valuenow", Math.round(percent).toString());
+      };
+
+      window.addEventListener("scroll", updateProgress, { passive: true });
+      updateProgress();
     });
   </script>
 </BaseLayout>

@@ -3,8 +3,16 @@ import "normalize.css";
 import "@styles/global.css";
 ---
 
-<progress class="progress-bar" role="progressbar" value="0" max="100"
-></progress>
+<div
+  class="progress-bar"
+  role="progressbar"
+  aria-label="Scroll progress"
+  aria-valuemin="0"
+  aria-valuemax="100"
+  aria-valuenow="0"
+>
+  <div class="progress-bar__fill"></div>
+</div>
 
 <style>
   .progress-bar {
@@ -14,26 +22,18 @@ import "@styles/global.css";
 
     width: 100%;
     height: 0.25em;
-    color: var(--color-primary);
-    -webkit-appearance: none;
-    appearance: none;
-
-    transition: width 0.2s ease;
+    background-color: transparent;
+    display: block;
+    pointer-events: none;
+    z-index: 100;
+    overflow: hidden;
+    --progress: 0;
   }
 
-  /* For Webkit browsers */
-  .progress-bar::-webkit-progress-bar {
-    background-color: transparent; /* Make background transparent */
-  }
-
-  .progress-bar::-webkit-progress-value {
+  .progress-bar__fill {
+    height: 100%;
     background-color: var(--color-primary);
-    transition: width 0.2s ease;
-  }
-
-  /* For Firefox */
-  .progress-bar::-moz-progress-bar {
-    background-color: var(--color-primary);
+    width: 0%;
     transition: width 0.2s ease;
   }
 </style>
