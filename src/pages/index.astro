@@ -1,7 +1,4 @@
 ---
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
 import Layout from "@layouts/Layout.astro";
 import Home from "@components/sections/Home.astro";
 import About from "@components/sections/About.astro";
@@ -28,6 +25,4 @@ const canonicalHref = canonicalURL.toString().replace(/\/$/, "");
     <Gallery />
     <Contact />
   </main>
-
-  <ToastContainer client:idle />
 </Layout>

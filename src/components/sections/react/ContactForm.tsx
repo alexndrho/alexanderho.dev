@@ -1,6 +1,8 @@
-import { FaRegPaperPlane } from "react-icons/fa";
 import { useForm } from "react-hook-form";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
+import { FaRegPaperPlane } from "react-icons/fa";
+import "react-toastify/dist/ReactToastify.css";
+
 import styles from "@styles/react/ContactForm.module.css";
 
 interface IFormVales {
@@ -50,91 +52,96 @@ function ContactForm() {
   };
 
   return (
-    <form
-      data-netlify="true"
-      name="contact"
-      action="POST"
-      className={styles.contact__form}
-      data-form-contact
-      onSubmit={handleSubmit(formSubmit)}
-    >
-      <input
-        type="text"
-        id="name"
-        placeholder="Name"
-        className={`${styles.contact__name} ${
-          styles.contact__input
-        } input input--primary ${formState.errors.name ? "input--danger" : ""}`}
-        data-form-input-name
-        {...register("name", {
-          required: "Please enter your name",
-          minLength: {
-            value: 5,
-            message: "Name must be at least 5 characters long",
-          },
-          maxLength: {
-            value: 30,
-            message: "Name must be at most 30 characters long",
-          },
-        })}
-      />
-      {formState.errors.name && (
-        <span className="text--danger text--sm">
-          {formState.errors.name.message}
-        </span>
-      )}
-
-      <input
-        id="email"
-        placeholder="Email"
-        className={`${styles.contact__input} input input--primary ${
-          formState.errors.email ? "input--danger" : ""
-        }`}
-        data-form-input-email
-        {...register("email", {
-          required: "Please enter your email",
-          pattern: {
-            value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-            message: "Please enter a valid email",
-          },
-        })}
-      />
-      {formState.errors.email && (
-        <span className="text--danger text--sm">
-          {formState.errors.email.message}
-        </span>
-      )}
-
-      <textarea
-        id="message"
-        placeholder="Message"
-        className={`${styles.contact__textarea} input input--primary ${
-          formState.errors.message ? "input--danger" : ""
-        }`}
-        rows={6}
-        data-form-input-message
-        {...register("message", {
-          required: "Please enter your message",
-          minLength: {
-            value: 10,
-            message: "Message must be at least 10 characters long",
-          },
-        })}
-      />
-      {formState.errors.message && (
-        <span className="text--danger text--sm">
-          {formState.errors.message.message}
-        </span>
-      )}
-
-      <button
-        type="submit"
-        className={`${styles.contact__submit} btn btn--primary btn--dashed-effect`}
+    <>
+      <ToastContainer />
+      <form
+        data-netlify="true"
+        name="contact"
+        action="POST"
+        className={styles.contact__form}
+        data-form-contact
+        onSubmit={handleSubmit(formSubmit)}
       >
-        Send Message
-        <FaRegPaperPlane />
-      </button>
-    </form>
+        <input
+          type="text"
+          id="name"
+          placeholder="Name"
+          className={`${styles.contact__name} ${
+            styles.contact__input
+          } input input--primary ${
+            formState.errors.name ? "input--danger" : ""
+          }`}
+          data-form-input-name
+          {...register("name", {
+            required: "Please enter your name",
+            minLength: {
+              value: 5,
+              message: "Name must be at least 5 characters long",
+            },
+            maxLength: {
+              value: 30,
+              message: "Name must be at most 30 characters long",
+            },
+          })}
+        />
+        {formState.errors.name && (
+          <span className="text--danger text--sm">
+            {formState.errors.name.message}
+          </span>
+        )}
+
+        <input
+          id="email"
+          placeholder="Email"
+          className={`${styles.contact__input} input input--primary ${
+            formState.errors.email ? "input--danger" : ""
+          }`}
+          data-form-input-email
+          {...register("email", {
+            required: "Please enter your email",
+            pattern: {
+              value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+              message: "Please enter a valid email",
+            },
+          })}
+        />
+        {formState.errors.email && (
+          <span className="text--danger text--sm">
+            {formState.errors.email.message}
+          </span>
+        )}
+
+        <textarea
+          id="message"
+          placeholder="Message"
+          className={`${styles.contact__textarea} input input--primary ${
+            formState.errors.message ? "input--danger" : ""
+          }`}
+          rows={6}
+          data-form-input-message
+          {...register("message", {
+            required: "Please enter your message",
+            minLength: {
+              value: 10,
+              message: "Message must be at least 10 characters long",
+            },
+          })}
+        />
+        {formState.errors.message && (
+          <span className="text--danger text--sm">
+            {formState.errors.message.message}
+          </span>
+        )}
+
+        <button
+          type="submit"
+          className={`${styles.contact__submit} btn btn--primary btn--dashed-effect`}
+        >
+          Send Message
+          <FaRegPaperPlane />
+        </button>
+      </form>
+    </>
   );
 }
 

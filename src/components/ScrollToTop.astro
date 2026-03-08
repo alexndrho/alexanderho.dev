@@ -41,7 +41,7 @@ import { TbArrowUp } from "react-icons/tb";
         } else {
           scrollToTopButton.classList.add("hidden");
         }
-      });
+      }, { passive: true });
 
       scrollToTopButton.addEventListener("click", () => {
         window.scrollTo({
