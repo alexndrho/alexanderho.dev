@@ -125,6 +125,7 @@ const computedUrl = (liveLink || "http://localhost:3000").replace(
   .card__img-head {
     width: 100%;
     padding: var(--spacing-xs) var(--spacing-sm);
+    border-bottom: var(--border);
 
     background-color: var(--color-light);
 
@@ -184,6 +185,8 @@ const computedUrl = (liveLink || "http://localhost:3000").replace(
   .card__img {
     width: 100%;
     height: unset;
+    aspect-ratio: var(--aspect-ratio-video);
+    object-fit: cover;
     border-radius: unset;
   }
 
@@ -261,11 +264,11 @@ const computedUrl = (liveLink || "http://localhost:3000").replace(
 
     .card__container-img {
       min-width: 0;
-      flex: 4;
+      flex: 10;
     }
 
     .card__info {
-      flex: 3;
+      flex: 8;
     }
   }
 </style>
