@@ -1,0 +1,32 @@
+<div class="window-controls">
+  <span></span>
+  <span></span>
+  <span></span>
+
+  <style>
+    .window-controls {
+      display: flex;
+      flex-direction: row;
+      gap: var(--spacing-xs);
+    }
+
+    .window-controls > * {
+      display: block;
+      width: 1rem;
+      height: 1rem;
+      border-radius: 50%;
+    }
+
+    .window-controls > *:nth-child(1) {
+      background-color: var(--color-danger);
+    }
+
+    .window-controls > *:nth-child(2) {
+      background-color: var(--color-warning);
+    }
+
+    .window-controls > *:nth-child(3) {
+      background-color: var(--color-success);
+    }
+  </style>
+</div>

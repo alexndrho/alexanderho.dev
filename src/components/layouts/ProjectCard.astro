@@ -4,6 +4,8 @@ import type { IconType } from "react-icons";
 import { FaLock } from "react-icons/fa";
 import { TbBrandGithub, TbExternalLink } from "react-icons/tb";
 
+import WindowControls from "@components/WindowControls.astro";
+
 interface Props {
   title: string;
   description: string;
@@ -29,11 +31,7 @@ const computedUrl = (liveLink || "http://localhost:3000").replace(
 <article class="card">
   <div class="card__container-img">
     <div class="card__img-head">
-      <div class="card__window-controls">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+      <WindowControls />
 
       <p aria-label="website url" class="card__url-bar">
         <FaLock />
@@ -131,33 +129,6 @@ const computedUrl = (liveLink || "http://localhost:3000").replace(
 
     display: flex;
     align-items: center;
-  }
-
-  .card__window-controls {
-    margin-right: var(--spacing-md);
-
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    gap: var(--spacing-xs);
-  }
-
-  .card__window-controls > * {
-    width: 1rem;
-    height: 1rem;
-    border-radius: 50%;
-  }
-
-  .card__window-controls > *:nth-child(1) {
-    background-color: var(--color-danger);
-  }
-
-  .card__window-controls > *:nth-child(2) {
-    background-color: var(--color-warning);
-  }
-
-  .card__window-controls > *:nth-child(3) {
-    background-color: var(--color-success);
   }
 
   .card__url-bar {

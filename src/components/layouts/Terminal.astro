@@ -1,0 +1,59 @@
+---
+import WindowControls from "@components/WindowControls.astro";
+
+interface Props {
+  headline?: string;
+}
+
+const { headline } = Astro.props;
+---
+
+<div class="terminal">
+  <div class="terminal__head">
+    <div class="terminal__window-controls">
+      <WindowControls />
+    </div>
+
+    <p class="terminal__head__dir">{headline}</p>
+
+    <div></div>
+  </div>
+
+  <slot />
+
+  <style>
+    p {
+      margin: 0;
+    }
+
+    .terminal {
+      margin-bottom: var(--spacing-md);
+      padding: var(--spacing-md);
+      background-color: var(--color-dark);
+      color: var(--color-light);
+      border-radius: var(--border-radius-md);
+
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-md);
+    }
+
+    .terminal__head {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .terminal__window-controls {
+      display: flex;
+      align-items: center;
+    }
+
+    .terminal__head__dir {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+    }
+  </style>
+</div>

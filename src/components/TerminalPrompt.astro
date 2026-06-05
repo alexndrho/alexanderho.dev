@@ -1,0 +1,39 @@
+---
+interface Props {
+  directory?: string;
+  prompt?: string;
+}
+
+const { directory = "~", prompt } = Astro.props;
+---
+
+<div>
+  <p class="directory">{directory}</p>
+  <p><span class="chevron">❯</span> {prompt}</p>
+
+  <div class="result">
+    <slot />
+  </div>
+
+  <style>
+    p {
+      margin: 0;
+    }
+
+    .directory {
+      color: var(--color-primary);
+      font-weight: bold;
+    }
+
+    .chevron {
+      color: var(--color-success);
+      font-weight: bold;
+    }
+
+    .result {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-md);
+    }
+  </style>
+</div>

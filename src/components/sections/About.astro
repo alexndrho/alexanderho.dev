@@ -1,40 +1,116 @@
 ---
+import { Image } from "astro:assets";
+
+import Terminal from "@components/layouts/Terminal.astro";
+import TerminalPrompt from "@components/TerminalPrompt.astro";
 import LocalTime from "../LocalTime.astro";
 import GitHubCalendar from "./react/GitHubCalendar";
+import meCycling from "@/assets/me-cycling.jpg";
 ---
 
 <section id="about" class="section">
   <div class="container container--section">
     <h2>About me</h2>
 
-    <p class="about__p">
-      Hello, I'm Alexander Gabriel Ho. I'm a web developer who enjoys building
-      things for the web and figuring out how they work. I focus on the small
-      details that make a website polished, easy to use, and nice to look at.
-    </p>
-    <p class="about__p">
-      Most of my work is on web applications, where I focus on clean structure
-      and code that's easy to maintain. I like to keep things simple and clear,
-      so both users and other developers can understand and use them easily.
-    </p>
-    <p class="about__p">
-      I began learning programming in 2021. Initially, I was uncertain about
-      what to study and how to proceed, but this confusion developed into a
-      curiosity about the learning process. This curiosity led me to explore web
-      development and continues to influence how I approach projects.
-    </p>
-    <p class="about__p">
-      Over time, my interest evolved into building platforms that enable people
-      to express themselves freely online. I am especially committed to creating
-      accessible projects that promote openness, community, and honest
-      expression.
-    </p>
-    <p class="about__p">
-      At the end of the day, I really enjoy seeing how people use the stuff I
-      build and finding little ways to make those experiences feel natural and
-      enjoyable. For me, coding's just as much about experimenting and learning
-      as it is about building, and I'm always looking for new ways to do both.
-    </p>
+    <Terminal headline="skidy@fedora:~">
+      <TerminalPrompt prompt="fastfetch">
+        <div class="fastfetch">
+          <Image
+            src={meCycling}
+            alt="Me cycling"
+            draggable={false}
+            class="fastfetch__image"
+          />
+
+          <div class="fastfetch__details">
+            <p>skidy@fedora</p>
+            <p>------------</p>
+            <p>
+              <span class="highlight">OS</span>: Fedora x86_64
+            </p>
+            <p><span class="highlight">Shell</span>: zsh</p>
+            <p>
+              <span class="highlight">Display (AUO272B)</span>: 3840x2160 @ 2x
+              in 13", 60 Hz [Built-in]
+            </p>
+            <p><span class="highlight">WM</span>: niri</p>
+            <p><span class="highlight">Terminal</span>: kitty</p>
+            <p>
+              <span class="highlight">CPU</span>: Intel(R) Core(TM) i7-10510U
+              (8) @ 4.90 GHz
+            </p>
+            <p>
+              <span class="highlight">GPU 1</span>: NVIDIA GeForce MX250
+              [Discrete]
+            </p>
+            <p>
+              <span class="highlight">GPU 2</span>: Intel UHD Graphics @ 1.15
+              GHz [Integrated]
+            </p>
+            <p>
+              <span class="highlight">Memory</span>: 9.20 GiB / 15.31 GiB (60%)
+            </p>
+            <p>
+              <span class="highlight">Swap</span>: 0 B / 8.00 GiB (0%)
+            </p>
+            <p>
+              <span class="highlight">Disk (/)</span>: 19.00 GiB / 474.35 GiB
+              (4%) - btrfs
+            </p>
+            <p>
+              <span class="highlight">Locale</span>: en_US.UTF-8
+            </p>
+            <p>------------</p>
+          </div>
+        </div>
+      </TerminalPrompt>
+
+      <TerminalPrompt prompt="ls">
+        <p class="ls-result">
+          <span>whoami.txt</span>
+          <span>interest.txt</span>
+          <span>life.txt</span>
+        </p>
+      </TerminalPrompt>
+
+      <TerminalPrompt prompt="cat whoami.txt">
+        <p>
+          Hey, I'm Alex, a full stack developer from the Philippines. I took
+          information technology in college because computers had already become
+          the thing I spent most of my free time on. Online, I go by skidy. It
+          means "script kiddie", a person who is an unskilled hacker who uses
+          pre-written programs to launch attacks. I came up with that name
+          because I used to create silly names online, and I only cling to that
+          name because it is short.
+        </p>
+      </TerminalPrompt>
+
+      <TerminalPrompt prompt="cat interest.txt">
+        <p>
+          I've always been interested in computers, and I started my programming
+          journey during the pandemic. These days, I spend most of my time
+          building and learning everything that makes computers tick. I love
+          configuring and tinkering with my Linux system, and shaping it to look
+          and behave the way I want it. That's why I've delved into Neovim, I
+          wanted an editor I could shape around the way I think and work. It's
+          not just about Neovim being faster or not having to move your hands
+          from the keyboard to the mouse to navigate. It is also about the
+          control, how you want it to be. For me, programming and learning
+          things about computers is the same as when people feel when playing
+          games.
+        </p>
+      </TerminalPrompt>
+
+      <TerminalPrompt prompt="cat life.txt">
+        <p>
+          Do Neovim users even have lives? Kidding. Away from the screen, I try
+          to stay curious and a little spontaneous. If I have not tried
+          something before, that is usually enough reason to give it a shot. I
+          used to spend more time at the gym and cycling around the city, but
+          most of my energy has been going back into development.
+        </p>
+      </TerminalPrompt>
+    </Terminal>
 
     <div class="about__extra">
       <LocalTime />
@@ -48,9 +124,30 @@ import GitHubCalendar from "./react/GitHubCalendar";
   </div>
 
   <style>
-    .about__p {
-      font-weight: 500;
-      text-align: justify;
+    p {
+      margin: 0;
+    }
+
+    .highlight {
+      color: var(--color-primary);
+    }
+
+    .ls-result {
+      display: flex;
+      gap: var(--spacing-md);
+    }
+
+    .fastfetch {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-md);
+    }
+
+    .fastfetch__image {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: var(--border-radius-md);
     }
 
     .about__extra {
@@ -74,7 +171,21 @@ import GitHubCalendar from "./react/GitHubCalendar";
       font-weight: 700;
     }
 
-    @media (--lg-viewport) {
+    @media (--md-viewport) {
+      .fastfetch {
+        flex-direction: row;
+        width: 100%;
+        align-items: flex-start;
+      }
+
+      .fastfetch__image {
+        width: min(40%, 420px);
+      }
+
+      .fastfetch__details {
+        flex: 1;
+      }
+
       .about__extra {
         flex-direction: row;
         align-items: start;
