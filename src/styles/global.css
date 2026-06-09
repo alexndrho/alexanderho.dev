@@ -198,20 +198,20 @@ table {
 img {
   max-width: 100%;
   height: auto;
-  border-radius: 8px;
+  border-radius: var(--border-radius-md);
 }
 
 code {
   padding: 2px 5px;
   background-color: var(--color-light-darker);
-  border-radius: 2px;
+  border-radius: var(--font-size-xs);
 }
 
 pre {
   margin-top: 0;
   margin-bottom: 2em;
   padding: 1.5em;
-  border-radius: 8px;
+  border-radius: var(--border-radius-md);
 }
 
 pre > code {
