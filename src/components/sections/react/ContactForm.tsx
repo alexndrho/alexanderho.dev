@@ -5,14 +5,14 @@ import "react-toastify/dist/ReactToastify.css";
 
 import styles from "@styles/react/ContactForm.module.css";
 
-interface IFormVales {
+interface IFormValues {
   name: string;
   email: string;
   message: string;
 }
 
 function ContactForm() {
-  const { register, formState, reset, handleSubmit } = useForm<IFormVales>({
+  const { register, formState, reset, handleSubmit } = useForm<IFormValues>({
     defaultValues: {
       name: "",
       email: "",
@@ -20,7 +20,7 @@ function ContactForm() {
     },
   });
 
-  const formSubmit = async (data: IFormVales) => {
+  const formSubmit = async (data: IFormValues) => {
     const onSuccess = (message: string) => toast(message, { type: "success" });
     const onError = (message: string) => toast(message, { type: "error" });
 
