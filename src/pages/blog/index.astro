@@ -8,9 +8,7 @@ import BlogPreview from "@/components/BlogPreview.astro";
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const canonicalHref = canonicalURL.toString().replace(/\/$/, "");
 
-const blogs = (await getCollection("blog")).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+const blogs = (await getCollection("blog")).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
 <Layout
@@ -19,12 +17,7 @@ const blogs = (await getCollection("blog")).sort(
   canonicalURL={canonicalHref}
 >
   <slot name="head">
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      title="RSS Feed"
-      href={new URL("blog/rss.xml", Astro.site)}
-    />
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href={new URL("blog/rss.xml", Astro.site)} />
   </slot>
 
   <main class="container">

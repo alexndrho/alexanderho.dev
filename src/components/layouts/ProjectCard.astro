@@ -18,14 +18,10 @@ interface Props {
   sourceLink?: string;
 }
 
-const { title, description, image, techStack, liveLink, sourceLink } =
-  Astro.props;
+const { title, description, image, techStack, liveLink, sourceLink } = Astro.props;
 
 // remove protocol (https://, http://) from liveLink for display
-const computedUrl = (liveLink || "http://localhost:3000").replace(
-  /^https?:\/\//,
-  "",
-);
+const computedUrl = (liveLink || "http://localhost:3000").replace(/^https?:\/\//, "");
 ---
 
 <article class="card">
@@ -62,12 +58,7 @@ const computedUrl = (liveLink || "http://localhost:3000").replace(
     <div class="card__links">
       {
         liveLink && (
-          <a
-            href={liveLink}
-            target="_blank"
-            rel="noreferrer"
-            class="btn btn--primary btn--dashed-effect"
-          >
+          <a href={liveLink} target="_blank" rel="noreferrer" class="btn btn--primary btn--dashed-effect">
             Live
             <TbExternalLink className="card__link__icon" />
           </a>
@@ -76,12 +67,7 @@ const computedUrl = (liveLink || "http://localhost:3000").replace(
 
       {
         sourceLink && (
-          <a
-            href={sourceLink}
-            target="_blank"
-            rel="noreferrer"
-            class="btn btn--primary btn--dashed-effect"
-          >
+          <a href={sourceLink} target="_blank" rel="noreferrer" class="btn btn--primary btn--dashed-effect">
             Source
             <TbBrandGithub className="card__link__icon" />
           </a>

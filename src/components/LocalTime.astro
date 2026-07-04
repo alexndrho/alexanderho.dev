@@ -85,11 +85,7 @@ const {
       const locale = root.dataset.locale || "en-US";
       const showSeconds = root.dataset.showSeconds !== "false";
       const showDate = root.dataset.showDate !== "false";
-      const { timeFormatter, dateFormatter } = createFormatters(
-        locale,
-        timeZone,
-        showSeconds,
-      );
+      const { timeFormatter, dateFormatter } = createFormatters(locale, timeZone, showSeconds);
 
       const update = () => {
         const now = new Date();
@@ -104,15 +100,11 @@ const {
     };
 
     const initAll = () => {
-      document
-        .querySelectorAll("[data-local-time-root]")
-        .forEach((root) => startForRoot(root));
+      document.querySelectorAll("[data-local-time-root]").forEach((root) => startForRoot(root));
     };
 
     const stopAll = () => {
-      document
-        .querySelectorAll("[data-local-time-root]")
-        .forEach((root) => stopForRoot(root));
+      document.querySelectorAll("[data-local-time-root]").forEach((root) => stopForRoot(root));
     };
 
     initAll();

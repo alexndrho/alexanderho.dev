@@ -15,13 +15,7 @@ const { gallery } = Astro.props;
   {
     gallery.map((item) => (
       <a href={`/gallery/${item.slug}`} class="image">
-        <Image
-          src={item.data.image}
-          alt="hero"
-          loading="lazy"
-          class="image__hero"
-          transition:name={item.data.title}
-        />
+        <Image src={item.data.image} alt="hero" loading="lazy" class="image__hero" transition:name={item.data.title} />
         <p class="image__title">{item.data.title}</p>
         <FormattedDate date={item.data.pubDate} />
       </a>

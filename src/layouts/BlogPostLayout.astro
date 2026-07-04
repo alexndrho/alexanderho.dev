@@ -13,23 +13,10 @@ type Props = CollectionEntry<"blog">["data"] & {
   canonicalURL?: string | undefined;
 };
 
-const {
-  title,
-  description,
-  pubDate,
-  updatedDate,
-  heroImage,
-  minutesRead,
-  canonicalURL,
-} = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, minutesRead, canonicalURL } = Astro.props;
 ---
 
-<BaseLayout
-  title={title}
-  description={description}
-  canonicalURL={canonicalURL}
-  image={heroImage}
->
+<BaseLayout title={title} description={description} canonicalURL={canonicalURL} image={heroImage}>
   <slot name="head" slot="head" />
 
   <ProgressBar />
@@ -134,21 +121,14 @@ const {
 
   <script>
     document.addEventListener("astro:page-load", () => {
-      const progressBar = document.querySelector(
-        ".progress-bar",
-      ) as HTMLDivElement | null;
-      const progressFill = document.querySelector(
-        ".progress-bar__fill",
-      ) as HTMLDivElement | null;
+      const progressBar = document.querySelector(".progress-bar") as HTMLDivElement | null;
+      const progressFill = document.querySelector(".progress-bar__fill") as HTMLDivElement | null;
 
       if (!progressBar || !progressFill) return;
 
       const updateProgress = () => {
-        const scrollableHeight =
-          document.documentElement.scrollHeight - window.innerHeight;
-        const progress = scrollableHeight
-          ? window.scrollY / scrollableHeight
-          : 0;
+        const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = scrollableHeight ? window.scrollY / scrollableHeight : 0;
         const percent = Math.min(100, Math.max(0, progress * 100));
 
         progressFill.style.width = `${percent}%`;

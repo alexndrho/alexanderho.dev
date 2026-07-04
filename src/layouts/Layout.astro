@@ -13,13 +13,7 @@ export interface Props {
 const { title, description, canonicalURL, image, navBarFloat } = Astro.props;
 ---
 
-<BaseLayout
-  title={title}
-  description={description}
-  canonicalURL={canonicalURL}
-  image={image}
-  navBarFloat={navBarFloat}
->
+<BaseLayout title={title} description={description} canonicalURL={canonicalURL} image={image} navBarFloat={navBarFloat}>
   <slot name="head" slot="head" />
 
   <slot />

@@ -30,16 +30,13 @@ function ContactForm() {
       formData.append("email", data.email);
       formData.append("message", data.message);
 
-      const response = await fetch(
-        `https://formspree.io/f/${import.meta.env.PUBLIC_FORM_ID}`,
-        {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-          },
-          body: formData,
+      const response = await fetch(`https://formspree.io/f/${import.meta.env.PUBLIC_FORM_ID}`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
         },
-      );
+        body: formData,
+      });
 
       if (!response.ok) throw new Error("Error sending message");
 
@@ -66,9 +63,7 @@ function ContactForm() {
           type="text"
           id="name"
           placeholder="Name"
-          className={`${styles.contact__name} ${
-            styles.contact__input
-          } input input--primary ${
+          className={`${styles.contact__name} ${styles.contact__input} input input--primary ${
             formState.errors.name ? "input--danger" : ""
           }`}
           data-form-input-name
@@ -84,18 +79,12 @@ function ContactForm() {
             },
           })}
         />
-        {formState.errors.name && (
-          <span className="text--danger text--sm">
-            {formState.errors.name.message}
-          </span>
-        )}
+        {formState.errors.name && <span className="text--danger text--sm">{formState.errors.name.message}</span>}
 
         <input
           id="email"
           placeholder="Email"
-          className={`${styles.contact__input} input input--primary ${
-            formState.errors.email ? "input--danger" : ""
-          }`}
+          className={`${styles.contact__input} input input--primary ${formState.errors.email ? "input--danger" : ""}`}
           data-form-input-email
           {...register("email", {
             required: "Please enter your email",
@@ -105,11 +94,7 @@ function ContactForm() {
             },
           })}
         />
-        {formState.errors.email && (
-          <span className="text--danger text--sm">
-            {formState.errors.email.message}
-          </span>
-        )}
+        {formState.errors.email && <span className="text--danger text--sm">{formState.errors.email.message}</span>}
 
         <textarea
           id="message"
@@ -127,16 +112,9 @@ function ContactForm() {
             },
           })}
         />
-        {formState.errors.message && (
-          <span className="text--danger text--sm">
-            {formState.errors.message.message}
-          </span>
-        )}
+        {formState.errors.message && <span className="text--danger text--sm">{formState.errors.message.message}</span>}
 
-        <button
-          type="submit"
-          className={`${styles.contact__submit} btn btn--primary btn--dashed-effect`}
-        >
+        <button type="submit" className={`${styles.contact__submit} btn btn--primary btn--dashed-effect`}>
           Send Message
           <FaRegPaperPlane />
         </button>

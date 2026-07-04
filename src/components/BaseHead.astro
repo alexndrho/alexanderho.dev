@@ -39,20 +39,8 @@ const { title, description, canonicalURL, image = FallbackImage } = Astro.props;
 <meta name="generator" content={Astro.generator} />
 
 <!-- Font preloads -->
-<link
-  rel="preload"
-  as="font"
-  type="font/woff2"
-  href={poppins600Woff2}
-  crossorigin="anonymous"
-/>
-<link
-  rel="preload"
-  as="font"
-  type="font/woff2"
-  href={poppins700Woff2}
-  crossorigin="anonymous"
-/>
+<link rel="preload" as="font" type="font/woff2" href={poppins600Woff2} crossorigin="anonymous" />
+<link rel="preload" as="font" type="font/woff2" href={poppins700Woff2} crossorigin="anonymous" />
 
 <!-- Canonical URL -->
 {canonicalURL && <link rel="canonical" href={canonicalURL} />}

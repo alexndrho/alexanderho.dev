@@ -7,9 +7,7 @@ import GalleryPreview from "@/components/GalleryPreview.astro";
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const canonicalHref = canonicalURL.toString().replace(/\/$/, "");
 
-const gallery = (await getCollection("gallery")).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+const gallery = (await getCollection("gallery")).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
 <Layout
@@ -21,9 +19,8 @@ const gallery = (await getCollection("gallery")).sort(
     <h1>Gallery</h1>
 
     <p>
-      Welcome to my gallery! a collection of digital artworks, illustrations,
-      and creative projects I&apos;ve created. Feel free to explore what&apos;s
-      here.
+      Welcome to my gallery! a collection of digital artworks, illustrations, and creative projects I&apos;ve created.
+      Feel free to explore what&apos;s here.
     </p>
 
     <GalleryPreview gallery={gallery} />

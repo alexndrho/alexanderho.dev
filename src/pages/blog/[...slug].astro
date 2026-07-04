@@ -18,18 +18,9 @@ const post = Astro.props;
 const { Content, remarkPluginFrontmatter } = await post.render();
 ---
 
-<BlogPostLayout
-  {...post.data}
-  minutesRead={remarkPluginFrontmatter.minutesRead}
-  canonicalURL={canonicalHref}
->
+<BlogPostLayout {...post.data} minutesRead={remarkPluginFrontmatter.minutesRead} canonicalURL={canonicalHref}>
   <slot name="head">
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      title="RSS Feed"
-      href={new URL("blog/rss.xml", Astro.site)}
-    />
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href={new URL("blog/rss.xml", Astro.site)} />
   </slot>
 
   <Content />

@@ -24,9 +24,7 @@ import { TbArrowUp } from "react-icons/tb";
   .hidden {
     visibility: hidden;
     opacity: 0;
-    transform: translateY(
-      100%
-    ) !important; /* Remain hidden when .hidden is applied */
+    transform: translateY(100%) !important; /* Remain hidden when .hidden is applied */
   }
 </style>
 
@@ -35,13 +33,17 @@ import { TbArrowUp } from "react-icons/tb";
     const scrollToTopButton = document.querySelector(".button-container");
 
     if (scrollToTopButton) {
-      window.addEventListener("scroll", () => {
-        if (window.scrollY > 20) {
-          scrollToTopButton.classList.remove("hidden");
-        } else {
-          scrollToTopButton.classList.add("hidden");
-        }
-      }, { passive: true });
+      window.addEventListener(
+        "scroll",
+        () => {
+          if (window.scrollY > 20) {
+            scrollToTopButton.classList.remove("hidden");
+          } else {
+            scrollToTopButton.classList.add("hidden");
+          }
+        },
+        { passive: true },
+      );
 
       scrollToTopButton.addEventListener("click", () => {
         window.scrollTo({
