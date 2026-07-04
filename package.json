@@ -9,7 +9,12 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "format": "prettier --write . --plugin=prettier-plugin-astro"
+    "format": "prettier --write . --plugin=prettier-plugin-astro",
+    "lint-staged": "lint-staged --concurrent false",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown --plugin=prettier-plugin-astro"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.12",
@@ -35,6 +40,8 @@
     "@csstools/postcss-global-data": "^2.1.0",
     "autoprefixer": "^10.4.15",
     "cssnano": "^6.0.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.0.8",
     "postcss-custom-media": "^10.0.0",
     "prettier": "^3.0.3",
     "prettier-plugin-astro": "^0.12.0",
