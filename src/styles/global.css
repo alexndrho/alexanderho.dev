@@ -202,7 +202,7 @@ img {
 code {
   padding: 2px 5px;
   background-color: var(--color-light-darker);
-  border-radius: var(--font-size-xs);
+  border-radius: var(--border-radius-md);
 }
 
 pre {
