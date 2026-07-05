@@ -1,0 +1,104 @@
+---
+title: "I Already Live in Neovim, So My Notes Do Too"
+description: "Why I moved my note-taking workflow from Obsidian app to Neovim, how it helps me write ideas instantly without waiting for Electron apps to load."
+heroImage: "./assets/hero.jpg"
+pubDate: "2026-07-05"
+---
+
+The traditional Obsidian app takes time to load before it’s usable, since it’s built with Electron. Because of that, I’ve become reluctant to open the app, especially when writing a quick note. The loading delay alone is enough to put me off. When an idea is supposed to take a few seconds to write down, waiting for a few seconds feels like friction.
+
+I looked around for an alternative, and found [neorg.nvim](https://github.com/nvim-neorg/neorg). The format itself is plain text, but support for `.norg` outside Neorg is limited, and Markdown is far more widely supported across other apps and platforms. I wanted my notes accessible on mobile and other platforms, and that's exactly what Obsidian already gave me.
+
+Considering my terminal is open all day for programming, having notes living in the terminal too means zero context-switching. So I found a way to keep Obsidian’s format without the Electron overhead. Since I’m already using Neovim and I’m used to its keybindings, I switched to [obsidian.nvim](https://github.com/obsidian-nvim/obsidian.nvim). It gave me direct access to my vault without ever leaving my terminal, so capturing ideas is faster than opening the traditional app, and I also keep Neovim’s features like fuzzy finding. So basically it’s still using Obsidian, but not just the app itself.
+
+Obsidian is built with Electron, which bundles Chromium and Node.js. That means launching the app involves starting the Electron runtime before the interface is ready. I’m not replacing Obsidian - I’m only replacing the desktop application. The best part of it nothing needs to be migrated - it’s still the same vault, same Markdown files, just a different front door.
+
+## How I set it up
+
+Here's what my config looks like for getting obsidian.nvim running with lazy.nvim:
+
+```lua
+{
+  'obsidian-nvim/obsidian.nvim',
+  version = '*',
+  ---@module 'obsidian'
+  ---@type obsidian.config
+  opts = {
+    legacy_commands = false,
+    workspaces = {
+      {
+        name = 'personal',
+        path = '~/vaults/personal',
+      },
+    },
+    picker = {
+      name = 'telescope.nvim', -- might vary on your picker
+    },
+  },
+}
+```
+
+By default, `obsidian.nvim` requires that conceallevel be set to 1 or 2. It's because Neovim shows raw Markdown syntax while editing. It is meant to hide syntax to render close to Obsidian's app clean view.
+
+### Option 1: Use obsidian.nvim's built-in UI
+
+Pick one of the two approaches below, depending on whether you want conceal everywhere or just inside your vault:
+
+```lua
+vim.opt.conceallevel = 2
+```
+
+Or, enable conceal only inside your Obsidian vault:
+
+```lua
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'markdown',
+  callback = function()
+    local path = vim.fn.expand '%:p'
+    local vaults = vim.fn.expand '~/vaults'
+
+    if path:match('^' .. vim.pesc(vaults)) then
+      vim.opt_local.conceallevel = 2
+    end
+  end,
+})
+```
+
+### Option 2: Use a dedicated renderer
+
+If you aren't a fan of its conceal-based UI (like me), use a dedicated Markdown rendering like [markview.nvim](https://github.com/OXY2DEV/markview.nvim). Since `markview.nvim` handles the rendered preview, disable `obsidian.nvim`’s UI option to avoid two overlapping - this also gets rid of the conceallevel warning.
+
+```lua
+opts = {
+  ui = {
+    enable = false,
+  },
+},
+```
+
+I configured my keymap to toggle rendering and see raw Markdown while editing.
+
+```lua
+return {
+  'OXY2DEV/markview.nvim',
+  lazy = false,
+  opts = {
+    preview = {
+      icon_provider = 'mini',
+    },
+  },
+  keys = {
+    {
+      '<leader>tm',
+      '<cmd>Markview toggle<cr>',
+      desc = 'Toggle MarkView',
+    },
+  },
+}
+```
+
+## Not a full replacement
+
+There are things the plugin doesn't cover, such as community extensions, CSS snippets, graph view, and other GUI only features that are exclusive to the Obsidian app. Because of that, I still open the Obsidian app for a quick glance at the graph and if I want to read the CSS snippets I implemented.
+
+On the mobile app I use the official app for reading and quick writing when I'm away from my computer. To keep everything in sync across devices, I use Syncthing instead of Obsidian's built-in Sync - it's free and open-source, fits well with my workflow, and can also synchronize any file type, not just Obsidian vaults.
