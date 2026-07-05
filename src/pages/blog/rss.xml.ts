@@ -20,9 +20,9 @@ export async function GET(context: APIContext) {
         title: post.data.title,
         pubDate: post.data.pubDate,
         description: post.data.description,
-        // Compute RSS link from post `slug`
+        // Compute RSS link from the content entry ID
         // This example assumes all posts are rendered as `/blog/[slug]` routes
-        link: `/blog/${post.slug}/`,
+        link: `/blog/${post.id}/`,
       }))
       .sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime()),
     stylesheet: "/pretty-feed-v3.xsl",

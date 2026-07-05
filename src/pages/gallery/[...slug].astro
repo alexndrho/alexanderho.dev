@@ -12,7 +12,7 @@ const canonicalHref = canonicalURL.toString().replace(/\/$/, "");
 export async function getStaticPaths() {
   const images = await getCollection("gallery");
   return images.map((image) => ({
-    params: { slug: image.slug },
+    params: { slug: image.id },
     props: image,
   }));
 }

@@ -14,7 +14,7 @@ const { blogs } = Astro.props;
 <div class="blogs">
   {
     blogs.map((blog) => (
-      <a href={`/blog/${blog.slug}`} class="blog">
+      <a href={`/blog/${blog.id}`} class="blog">
         <Image
           src={blog.data.heroImage}
           alt="hero"
