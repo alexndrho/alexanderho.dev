@@ -3,6 +3,7 @@ title: "I Already Live in Neovim, So My Notes Do Too"
 description: "Why I moved my note-taking workflow from Obsidian app to Neovim, how it helps me write ideas instantly without waiting for Electron apps to load."
 heroImage: "./assets/hero.jpg"
 pubDate: "2026-07-05"
+updatedDate: "2026-07-09"
 ---
 
 The traditional Obsidian app takes time to load before it’s usable, since it’s built with Electron. Because of that, I’ve become reluctant to open the app, especially when writing a quick note. The loading delay alone is enough to put me off. When an idea is supposed to take a few seconds to write down, waiting for a few seconds feels like friction.
@@ -84,14 +85,14 @@ return {
   lazy = false,
   opts = {
     preview = {
-      icon_provider = 'mini',
+      icon_provider = 'mini', -- might vary on your icon provider
     },
   },
   keys = {
     {
       '<leader>tm',
       '<cmd>Markview toggle<cr>',
-      desc = 'Toggle MarkView',
+      desc = 'Toggle Markview',
     },
   },
 }
