@@ -1,3 +1,12 @@
+.link {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
 .link--dark {
   color: var(--color-dark);
 }
@@ -14,10 +23,6 @@
   color: var(--color-primary);
 }
 
-.link--no-underline {
-  text-decoration: none;
-}
-
 .link--icon {
   font-size: var(--font-size-4xl);
   color: var(--color-dark);
@@ -28,4 +33,5 @@
 
 .link--icon:hover {
   color: var(--color-primary);
+  text-decoration: none;
 }

@@ -11,18 +11,18 @@ const { float } = Astro.props;
 
 <nav class={`nav${float ? " nav--float" : ""}`}>
   <div class="nav__container container container--nav">
-    <a href="/#home" class="nav__logo nav__link link--dark">alexanderho</a>
+    <a href="/#home" class="nav__logo nav__link link link--dark">alexanderho</a>
 
     <div class="nav__main-menu" data-main-menu>
-      <a href="/#about" class="nav__link link--dark" data-main-menu-links> About</a>
-      <a href="/#projects" class="nav__link link--dark" data-main-menu-links> Projects</a>
-      <a href="/#contact" class="nav__link link--dark" data-main-menu-links> Contact</a>
+      <a href="/#about" class="nav__link link link--dark" data-main-menu-links> About</a>
+      <a href="/#projects" class="nav__link link link--dark" data-main-menu-links> Projects</a>
+      <a href="/#contact" class="nav__link link link--dark" data-main-menu-links> Contact</a>
 
       <div class="divider"></div>
 
-      <a href="/gallery" class="nav__link link--dark" data-main-menu-links> Gallery</a>
+      <a href="/gallery" class="nav__link link link--dark" data-main-menu-links> Gallery</a>
 
-      <a href="/blog" class="nav__link link--dark" data-main-menu-links> Blog</a>
+      <a href="/blog" class="nav__link link link--dark" data-main-menu-links> Blog</a>
     </div>
 
     <FaBarsStaggered aria-label="menu" className="nav__ham-menu" data-ham-main-menu-button />
