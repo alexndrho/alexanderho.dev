@@ -1,5 +1,18 @@
 ---
 import { Image } from "astro:assets";
+import {
+  FaArrowRightArrowLeft,
+  FaDesktop,
+  FaDollarSign,
+  FaImage,
+  FaLanguage,
+  FaLinux,
+  FaMemory,
+  FaMicrochip,
+  FaRegHardDrive,
+  FaRegWindowMaximize,
+  FaTerminal,
+} from "react-icons/fa6";
 
 import Terminal from "@components/layouts/Terminal.astro";
 import TerminalPrompt from "@components/TerminalPrompt.astro";
@@ -21,34 +34,76 @@ import meCycling from "@/assets/me-cycling.jpg";
             <p>skidy@fedora</p>
             <p>------------</p>
             <p>
-              <span class="highlight">OS</span>: Fedora x86_64
-            </p>
-            <p><span class="highlight">Shell</span>: zsh</p>
-            <p>
-              <span class="highlight">Display (AUO272B)</span>: 3840x2160 @ 2x in 13", 60 Hz [Built-in]
-            </p>
-            <p><span class="highlight">WM</span>: niri</p>
-            <p><span class="highlight">Terminal</span>: kitty</p>
-            <p>
-              <span class="highlight">CPU</span>: Intel(R) Core(TM) i7-10510U (8) @ 4.90 GHz
+              <span class="fastfetch__icon highlight">
+                <FaLinux />
+              </span>
+               Fedora x86_64
             </p>
             <p>
-              <span class="highlight">GPU 1</span>: NVIDIA GeForce MX250 [Discrete]
+              <span class="fastfetch__icon highlight">
+                <FaDollarSign />
+              </span>
+               zsh
             </p>
             <p>
-              <span class="highlight">GPU 2</span>: Intel UHD Graphics @ 1.15 GHz [Integrated]
+              <span class="fastfetch__icon highlight">
+                <FaDesktop />
+              </span>
+               3840x2160 @ 2x in 13", 60 Hz [Built-in]
             </p>
             <p>
-              <span class="highlight">Memory</span>: 9.20 GiB / 15.31 GiB (60%)
+              <span class="fastfetch__icon highlight">
+                <FaRegWindowMaximize />
+              </span>
+               niri
             </p>
             <p>
-              <span class="highlight">Swap</span>: 0 B / 8.00 GiB (0%)
+              <span class="fastfetch__icon highlight">
+                <FaTerminal />
+              </span>
+               kitty
             </p>
             <p>
-              <span class="highlight">Disk (/)</span>: 19.00 GiB / 474.35 GiB (4%) - btrfs
+              <span class="fastfetch__icon highlight">
+                <FaMicrochip />
+              </span>
+               Intel(R) Core(TM) i7-10510U (8) @ 4.90 GHz
             </p>
             <p>
-              <span class="highlight">Locale</span>: en_US.UTF-8
+              <span class="fastfetch__icon highlight">
+                <FaImage />
+              </span>
+               NVIDIA GeForce MX250 [Discrete]
+            </p>
+            <p>
+              <span class="fastfetch__icon highlight">
+                <FaImage />
+              </span>
+               Intel UHD Graphics @ 1.15 GHz [Integrated]
+            </p>
+            <p>
+              <span class="fastfetch__icon highlight">
+                <FaMemory />
+              </span>
+               9.20 GiB / 15.31 GiB (60%)
+            </p>
+            <p>
+              <span class="fastfetch__icon highlight">
+                <FaArrowRightArrowLeft />
+              </span>
+               0 B / 8.00 GiB (0%)
+            </p>
+            <p>
+              <span class="fastfetch__icon highlight">
+                <FaRegHardDrive />
+              </span>
+               19.00 GiB / 474.35 GiB (4%) - btrfs
+            </p>
+            <p>
+              <span class="fastfetch__icon highlight">
+                <FaLanguage />
+              </span>
+               en_US.UTF-8
             </p>
             <p>------------</p>
           </div>
@@ -131,6 +186,14 @@ import meCycling from "@/assets/me-cycling.jpg";
       aspect-ratio: 1;
       object-fit: cover;
       border-radius: var(--border-radius-md);
+    }
+
+    .fastfetch__icon {
+      margin-right: var(--font-size-xs);
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      vertical-align: middle;
     }
 
     .about__extra {
