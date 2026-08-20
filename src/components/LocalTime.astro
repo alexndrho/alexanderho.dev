@@ -8,13 +8,12 @@ const {
   locale = "en-US",
   showSeconds = true,
   showDate = true,
-  size = "md",
   class: className,
 } = Astro.props;
 ---
 
 <div
-  class:list={["local-time", `local-time--${size}`, className]}
+  class:list={["local-time", className]}
   data-local-time-root
   data-time-zone={timeZone}
   data-locale={locale}
@@ -115,14 +114,8 @@ const {
 
 <style>
   .local-time {
-    --local-time-padding: var(--spacing-md);
-    --local-time-value-size: var(--font-size-3xl);
-    --local-time-font-size: var(--font-size-md);
-    --local-time-label-margin: 0.5rem;
-    --local-time-margin: 0.25rem;
-
     background-color: var(--color-light);
-    padding: var(--local-time-padding);
+    padding: var(--spacing-md);
     box-shadow: var(--box-shadow);
     border-radius: var(--border-radius-md);
     border: var(--border);
@@ -133,8 +126,8 @@ const {
   }
 
   .local-time__label {
-    margin: 0 0 var(--local-time-label-margin) 0;
-    font-size: var(--local-time-font-size);
+    margin: 0 0 0.5rem 0;
+    font-size: var(--font-size-md);
     color: var(--color-secondary);
     line-height: 1;
     text-transform: uppercase;
@@ -151,14 +144,14 @@ const {
     margin: 0;
     display: inline-block;
     font-family: var(--font-family-mono);
-    font-size: var(--local-time-value-size);
+    font-size: var(--font-size-3xl);
     line-height: 1;
     font-variant-numeric: tabular-nums;
   }
 
   .local-time__location {
-    margin: var(--local-time-margin) 0 0 0;
-    font-size: var(--local-time-font-size);
+    margin: 0.25rem 0 0 0;
+    font-size: var(--font-size-md);
     color: var(--color-secondary);
     font-weight: 600;
     line-height: 1;
@@ -168,35 +161,11 @@ const {
   }
 
   .local-time__day {
-    margin: var(--local-time-margin) 0 0 0;
-    font-size: var(--local-time-font-size);
+    margin: 0.25rem 0 0 0;
+    font-size: var(--font-size-md);
     line-height: 1;
     text-transform: uppercase;
     color: var(--color-secondary);
     font-weight: 600;
-  }
-
-  .local-time--xs {
-    --local-time-padding: var(--spacing-xs);
-    --local-time-font-size: var(--font-size-sm);
-    --local-time-value-size: var(--font-size-xl);
-  }
-
-  .local-time--sm {
-    --local-time-padding: var(--spacing-sm);
-    --local-time-font-size: var(--font-size-md);
-    --local-time-value-size: var(--font-size-2xl);
-  }
-
-  .local-time--lg {
-    --local-time-padding: var(--spacing-lg);
-    --local-time-font-size: var(--font-size-lg);
-    --local-time-value-size: var(--font-size-4xl);
-  }
-
-  .local-time--xl {
-    --local-time-padding: var(--spacing-lg);
-    --local-time-font-size: var(--font-size-xl);
-    --local-time-value-size: var(--font-size-5xl);
   }
 </style>
