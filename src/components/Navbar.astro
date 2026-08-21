@@ -13,19 +13,28 @@ const { float } = Astro.props;
   <div class="nav__container container container--nav">
     <a href="/#home" class="nav__logo nav__link link link--dark">alexanderho</a>
 
-    <div class="nav__main-menu" data-main-menu>
-      <a href="/#about" class="nav__link link link--dark" data-main-menu-links> About</a>
-      <a href="/#projects" class="nav__link link link--dark" data-main-menu-links> Projects</a>
-      <a href="/#contact" class="nav__link link link--dark" data-main-menu-links> Contact</a>
+    <ul id="main-menu" class="nav__main-menu" data-main-menu>
+      <li><a href="/#about" class="nav__link link link--dark" data-main-menu-links>About</a></li>
+      <li><a href="/#projects" class="nav__link link link--dark" data-main-menu-links>Projects</a></li>
+      <li><a href="/#contact" class="nav__link link link--dark" data-main-menu-links>Contact</a></li>
 
-      <div class="divider"></div>
+      <li class="divider" aria-hidden="true"></li>
 
-      <a href="/gallery" class="nav__link link link--dark" data-main-menu-links> Gallery</a>
+      <li><a href="/gallery" class="nav__link link link--dark" data-main-menu-links>Gallery</a></li>
 
-      <a href="/blog" class="nav__link link link--dark" data-main-menu-links> Blog</a>
-    </div>
+      <li><a href="/blog" class="nav__link link link--dark" data-main-menu-links>Blog</a></li>
+    </ul>
 
-    <FaBarsStaggered aria-label="menu" className="nav__ham-menu" data-ham-main-menu-button />
+    <button
+      type="button"
+      class="btn btn--plain nav__ham-menu"
+      aria-label="Toggle navigation menu"
+      aria-controls="main-menu"
+      aria-expanded="false"
+      data-ham-main-menu-button
+    >
+      <FaBarsStaggered aria-hidden="true" />
+    </button>
   </div>
 </nav>
 
@@ -37,10 +46,12 @@ const { float } = Astro.props;
 
     const toggleMainMenu = () => {
       mainMenu?.classList.toggle("nav__main-menu--show");
+      mainMenuButton?.setAttribute("aria-expanded", String(mainMenu?.classList.contains("nav__main-menu--show")));
     };
 
     const closeMainMenu = () => {
       mainMenu?.classList.remove("nav__main-menu--show");
+      mainMenuButton?.setAttribute("aria-expanded", "false");
     };
 
     mainMenuButton?.addEventListener("click", toggleMainMenu);
@@ -94,7 +105,9 @@ const { float } = Astro.props;
 
     width: 100vw;
     height: 100vh;
+    margin: 0;
     padding: 5em;
+    list-style: none;
 
     background: var(--color-light);
     display: flex;
@@ -126,7 +139,6 @@ const { float } = Astro.props;
 
   .nav__ham-menu {
     font-size: var(--font-size-xl);
-    cursor: pointer;
     z-index: 99;
   }
 

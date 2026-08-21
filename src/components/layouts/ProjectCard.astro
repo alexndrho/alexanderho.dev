@@ -41,19 +41,19 @@ const computedUrl = (liveLink || "http://localhost:3000").replace(/^https?:\/\//
     <h3 class="card__title">{title}</h3>
     <p class="card__desc">{description}</p>
 
-    <div class="card__tech-stacks">
+    <ul class="card__tech-stacks">
       {
         techStack.map((item) => {
           const Icon = item.icon;
           return (
-            <span class="card__tech-stack">
+            <li class="card__tech-stack">
               {Icon && <Icon />}
               {item.tech}
-            </span>
+            </li>
           );
         })
       }
-    </div>
+    </ul>
 
     <div class="card__links">
       {
@@ -173,6 +173,9 @@ const computedUrl = (liveLink || "http://localhost:3000").replace(/^https?:\/\//
   }
 
   .card__tech-stacks {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
     margin-bottom: var(--spacing-sm);
     display: flex;
     flex-direction: row;

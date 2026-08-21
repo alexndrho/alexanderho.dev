@@ -111,11 +111,11 @@ import meCycling from "@/assets/me-cycling.jpg";
       </TerminalPrompt>
 
       <TerminalPrompt prompt="ls">
-        <p class="ls-result">
-          <span>whoami.txt</span>
-          <span>interest.txt</span>
-          <span>life.txt</span>
-        </p>
+        <ul class="ls-result">
+          <li>whoami.txt</li>
+          <li>interest.txt</li>
+          <li>life.txt</li>
+        </ul>
       </TerminalPrompt>
 
       <TerminalPrompt prompt="cat whoami.txt">
@@ -171,6 +171,9 @@ import meCycling from "@/assets/me-cycling.jpg";
     }
 
     .ls-result {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
       display: flex;
       gap: var(--spacing-md);
     }
