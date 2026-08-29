@@ -1,6 +1,9 @@
 .link {
   color: var(--color-primary);
   text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
 }
 
 .link:hover {

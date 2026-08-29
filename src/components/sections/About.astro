@@ -4,6 +4,7 @@ import {
   FaArrowRightArrowLeft,
   FaDesktop,
   FaDollarSign,
+  FaGithub,
   FaImage,
   FaLanguage,
   FaLinux,
@@ -148,6 +149,13 @@ import meCycling from "@/assets/me-cycling.jpg";
           development.
         </p>
       </TerminalPrompt>
+
+      <TerminalPrompt prompt="git remote get-url origin">
+        <a href="https://github.com/alexndrho/alexanderho.dev" class="link" target="_blank" rel="noreferrer">
+          https://github.com/alexndrho/alexanderho.dev
+          <FaGithub aria-hidden="true" />
+        </a>
+      </TerminalPrompt>
     </Terminal>
 
     <div class="about__extra">
@@ -164,6 +172,10 @@ import meCycling from "@/assets/me-cycling.jpg";
   <style>
     p {
       margin: 0;
+    }
+
+    .link {
+      color: var(--color-light);
     }
 
     .highlight {
