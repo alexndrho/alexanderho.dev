@@ -1,16 +1,19 @@
 ---
 import ProjectCard from "@components/layouts/ProjectCard.astro";
 import stickyThoughtsPreview from "@assets/project-previews/stickythoughts.png";
+import dotfilesPreview from "@assets/project-previews/dotfiles.png";
 import linkUpPreview from "@assets/project-previews/linkup.png";
 import brainiacPreview from "@assets/project-previews/brainiac.png";
 import blogPostPreview from "@assets/project-previews/blog-post.png";
 
-import { FaReact, FaNodeJs } from "react-icons/fa";
+import { FaNodeJs, FaReact } from "react-icons/fa6";
 import { TbBrandMantine, TbBrandMongodb, TbBrandNextjs, TbSettings } from "react-icons/tb";
-import { SiExpress, SiPrisma, SiSocketdotio, SiTailwindcss } from "react-icons/si";
+import { SiExpress, SiNeovim, SiNiri, SiSocketdotio, SiTailwindcss, SiZsh } from "react-icons/si";
 import { BiLogoPostgresql } from "react-icons/bi";
 import { MdCable } from "react-icons/md";
 import { RxStitchesLogo } from "react-icons/rx";
+import { LuShell } from "react-icons/lu";
+import { DiTerminal } from "react-icons/di";
 ---
 
 <section id="projects" class="section">
@@ -26,6 +29,20 @@ import { RxStitchesLogo } from "react-icons/rx";
         { icon: BiLogoPostgresql, tech: "PostgreSQL" },
       ]}
       liveLink="https://stickythoughts.app"
+    />
+
+    <ProjectCard
+      title="dotfiles"
+      description="A collection of configuration for keyboard-driven Linux environment that generates a cohesive theme across desktop and supported applications based on the selected wallpaper."
+      image={dotfilesPreview}
+      techStack={[
+        { icon: SiNiri, tech: "Niri" },
+        { icon: LuShell, tech: "Quickshell" },
+        { icon: DiTerminal, tech: "Kitty" },
+        { icon: SiZsh, tech: "Zsh" },
+        { icon: SiNeovim, tech: "Neovim" },
+      ]}
+      sourceLink="https://github.com/alexndrho/dotfiles"
     />
 
     <ProjectCard
