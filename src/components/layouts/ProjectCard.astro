@@ -1,12 +1,12 @@
 ---
-import { Image } from "astro:assets";
 import type { IconType } from "react-icons";
-import { FaLock } from "react-icons/fa";
 import { TbBrandGithub, TbExternalLink } from "react-icons/tb";
 
-import WindowControls from "@components/WindowControls.astro";
+import WebsiteMock from "@components/WebsiteMock.astro";
+import DesktopMock from "@components/DesktopMock.astro";
 
 interface Props {
+  type?: "website" | "desktop";
   title: string;
   description: string;
   image: ImageMetadata;
@@ -18,24 +18,17 @@ interface Props {
   sourceLink?: string;
 }
 
-const { title, description, image, techStack, liveLink, sourceLink } = Astro.props;
-
-// remove protocol (https://, http://) from liveLink for display
-const computedUrl = (liveLink || "http://localhost:3000").replace(/^https?:\/\//, "");
+const { type = "website", title, description, image, techStack, liveLink, sourceLink } = Astro.props;
 ---
 
 <article class="card">
-  <div class="card__container-img">
-    <div class="card__img-head">
-      <WindowControls />
-
-      <p aria-label="website url" class="card__url-bar">
-        <FaLock />
-        <span class="card__url-label">{computedUrl}</span>
-      </p>
-    </div>
-    <Image src={image} alt="project-preview" class="card__img" />
-  </div>
+  {
+    type === "website" ? (
+      <WebsiteMock url={liveLink} image={image} class="card__mock" />
+    ) : (
+      <DesktopMock image={image} class="card__mock" />
+    )
+  }
 
   <div class="card__info">
     <h3 class="card__title">{title}</h3>
@@ -95,58 +88,6 @@ const computedUrl = (liveLink || "http://localhost:3000").replace(/^https?:\/\//
     margin-bottom: 0;
   }
 
-  .card__container-img {
-    box-shadow: var(--box-shadow);
-    border: var(--border);
-    border-radius: var(--border-radius-md);
-
-    display: flex;
-    flex-direction: column;
-
-    overflow: hidden;
-  }
-
-  .card__img-head {
-    width: 100%;
-    padding: var(--spacing-xs) var(--spacing-sm);
-    border-bottom: var(--border);
-
-    background-color: var(--color-light);
-
-    display: flex;
-    align-items: center;
-  }
-
-  .card__url-bar {
-    font-size: var(--font-size-xs);
-    width: 65%;
-
-    margin: 0 auto 0;
-    padding: 0.25em 0.5em;
-
-    border-radius: var(--border-radius-sm);
-    border: 1px solid var(--color-light-darkest);
-    background-color: var(--color-light-darker);
-
-    display: flex;
-    align-items: center;
-    gap: 0.5em;
-  }
-
-  .card__url-label {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .card__img {
-    width: 100%;
-    height: unset;
-    aspect-ratio: var(--aspect-ratio-video);
-    object-fit: cover;
-    border-radius: unset;
-  }
-
   .card__info {
     display: flex;
     flex-direction: column;
@@ -190,7 +131,6 @@ const computedUrl = (liveLink || "http://localhost:3000").replace(/^https?:\/\//
     color: var(--color-light);
     font-size: var(--font-size-xs);
     line-height: var(--line-height-xs);
-    font-size: 0.75rem;
     font-weight: 500;
 
     display: flex;
@@ -222,7 +162,7 @@ const computedUrl = (liveLink || "http://localhost:3000").replace(/^https?:\/\//
       flex-direction: row;
     }
 
-    .card__container-img {
+    .card__mock {
       min-width: 0;
       flex: 10;
     }

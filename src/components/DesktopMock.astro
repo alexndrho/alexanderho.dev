@@ -1,0 +1,38 @@
+---
+import { Image } from "astro:assets";
+import { PiPlanetFill } from "react-icons/pi";
+
+interface Props {
+  image: ImageMetadata;
+  class?: string;
+}
+
+const { image, class: className, ...rest } = Astro.props;
+---
+
+<div class:list={["mock", className]} {...rest}>
+  <Image src={image} alt="preview" />
+
+  <div class="mock__bottom-padding">
+    <PiPlanetFill />
+  </div>
+</div>
+
+<style>
+  .mock {
+    box-shadow: var(--box-shadow);
+    border: var(--border);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-xs) var(--spacing-xs) 0 var(--spacing-xs);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mock__bottom-padding {
+    padding: var(--spacing-xs);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: var(--font-size-2xl);
+  }
+</style>
