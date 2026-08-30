@@ -8,7 +8,7 @@ import blogPostPreview from "@assets/project-previews/blog-post.png";
 
 import { FaNodeJs, FaReact } from "react-icons/fa6";
 import { TbBrandMantine, TbBrandMongodb, TbBrandNextjs, TbSettings } from "react-icons/tb";
-import { SiExpress, SiNeovim, SiNiri, SiSocketdotio, SiTailwindcss, SiZsh } from "react-icons/si";
+import { SiExpress, SiNeovim, SiNiri, SiSocketdotio, SiTailwindcss, SiWayland, SiZsh } from "react-icons/si";
 import { BiLogoPostgresql } from "react-icons/bi";
 import { MdCable } from "react-icons/md";
 import { RxStitchesLogo } from "react-icons/rx";
@@ -35,11 +35,12 @@ import { DiTerminal } from "react-icons/di";
     <ProjectCard
       type="desktop"
       title="dotfiles"
-      description="A collection of configuration for keyboard-driven Linux environment that generates a cohesive theme across desktop and supported applications based on the selected wallpaper."
+      description="A keyboard-driven desktop shell for Linux, with dynamic theming, smooth animations, and a collection of configurations"
       image={dotfilesPreview}
       techStack={[
         { icon: SiNiri, tech: "Niri" },
         { icon: LuShell, tech: "Quickshell" },
+        { icon: SiWayland, tech: "Wayland" },
         { icon: DiTerminal, tech: "Kitty" },
         { icon: SiZsh, tech: "Zsh" },
         { icon: SiNeovim, tech: "Neovim" },
