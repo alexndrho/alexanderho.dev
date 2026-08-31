@@ -151,10 +151,12 @@ import meCycling from "@/assets/me-cycling.jpg";
       </TerminalPrompt>
 
       <TerminalPrompt prompt="git remote get-url origin">
-        <a href="https://github.com/alexndrho/alexanderho.dev" class="link" target="_blank" rel="noreferrer">
-          https://github.com/alexndrho/alexanderho.dev
-          <FaGithub aria-hidden="true" />
-        </a>
+        <p>
+          <a href="https://github.com/alexndrho/alexanderho.dev" class="link" target="_blank" rel="noreferrer">
+            https://github.com/alexndrho/alexanderho.dev
+            <FaGithub aria-hidden="true" className="git-url-origin-icon" />
+          </a>
+        </p>
       </TerminalPrompt>
     </Terminal>
 
@@ -176,6 +178,7 @@ import meCycling from "@/assets/me-cycling.jpg";
 
     .link {
       color: var(--color-light);
+      text-decoration: underline;
     }
 
     .highlight {
@@ -209,6 +212,10 @@ import meCycling from "@/assets/me-cycling.jpg";
       justify-content: center;
       align-items: center;
       vertical-align: middle;
+    }
+
+    .git-url-origin-icon {
+      margin-inline-start: 0.5em;
     }
 
     .about__extra {

@@ -1,9 +1,10 @@
 .link {
   color: var(--color-primary);
   text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5em;
+}
+
+.link > svg {
+  vertical-align: -0.125em;
 }
 
 .link:hover {
