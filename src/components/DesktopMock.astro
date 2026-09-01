@@ -11,7 +11,7 @@ const { image, class: className, ...rest } = Astro.props;
 ---
 
 <div class:list={["mock", className]} {...rest}>
-  <Image src={image} alt="preview" />
+  <Image src={image} alt="preview" class="mock__img" />
 
   <div class="mock__bottom-padding">
     <PiPlanetFill />
@@ -26,6 +26,10 @@ const { image, class: className, ...rest } = Astro.props;
     padding: var(--spacing-xs) var(--spacing-xs) 0 var(--spacing-xs);
     display: flex;
     flex-direction: column;
+  }
+
+  .mock__img {
+    border-radius: var(--border-radius-sm);
   }
 
   .mock__bottom-padding {
