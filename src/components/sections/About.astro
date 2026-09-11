@@ -125,6 +125,7 @@ import meCycling from "@/assets/me-cycling.jpg";
           <li>whoami.txt</li>
           <li>interest.txt</li>
           <li>life.txt</li>
+          <li>stack.yml</li>
         </ul>
       </TerminalPrompt>
 
@@ -158,6 +159,78 @@ import meCycling from "@/assets/me-cycling.jpg";
           development.
         </p>
       </TerminalPrompt>
+
+      <TerminalPrompt prompt="cat stack.yml">
+        <div class="stack">
+          {
+            [
+              {
+                label: "Languages",
+                value: [
+                  "Javascript",
+                  "Typescript",
+                  "PHP",
+                  "Lua",
+                  "Python",
+                  "C++",
+                  "C#",
+                  "Java",
+                  "Kotlin",
+                  "QML",
+                  "Bash",
+                ],
+              },
+              {
+                label: "Frontend",
+                value: [
+                  "React",
+                  "Next.js",
+                  "Astro",
+                  "Tanstack Start",
+                  "React Router",
+                  "Tanstack Query",
+                  "Jotai",
+                  "Zustand",
+                  "CSS",
+                  "Tailwind CSS",
+                  "PostCSS",
+                  "Vite",
+                  "Webpack",
+                ],
+              },
+              {
+                label: "Backend",
+                value: ["Node.js", "Express.js", "Fastify", "Laravel", "CodeIgniter", "REST", "WebRTC", "WebSocket"],
+              },
+              {
+                label: "Mobile",
+                value: ["Expo", "React Native"],
+              },
+              {
+                label: "Database",
+                value: ["Prisma", "Drizzle", "PostgreSQL", "SQLite", "MySQL", "Redis", "Firebase", "MongoDB"],
+              },
+              {
+                label: "DevOps",
+                value: ["Docker", "Vercel", "Cloudflare", "Netlify", "DigitalOcean"],
+              },
+              {
+                label: "Tools",
+                value: ["Git", "Github", "GitLab", "Neovim", "Visual Studio", "JetBrains", "Bruno", "Postman"],
+              },
+              {
+                label: "OS & Distro",
+                value: ["Linux", "Fedora", "Ubuntu", "Windows", "macOS"],
+              },
+            ].map((item) => (
+              <>
+                <p class="highlight">{item.label}</p>
+                <p>{item.value.join(", ")}</p>
+              </>
+            ))
+          }
+        </div>
+      </TerminalPrompt>
     </Terminal>
 
     <div class="about__extra">
@@ -190,7 +263,8 @@ import meCycling from "@/assets/me-cycling.jpg";
       margin: 0;
       padding: 0;
       display: flex;
-      gap: var(--spacing-md);
+      flex-wrap: wrap;
+      column-gap: var(--spacing-md);
     }
 
     .fastfetch {
@@ -216,6 +290,12 @@ import meCycling from "@/assets/me-cycling.jpg";
 
     .git-url-origin-icon {
       margin-inline-start: 0.5em;
+    }
+
+    .stack {
+      display: grid;
+      grid-template-columns: max-content minmax(0, 1fr);
+      column-gap: var(--spacing-md);
     }
 
     .about__extra {
