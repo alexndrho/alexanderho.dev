@@ -15,7 +15,7 @@ const { url, image, class: className, ...rest } = Astro.props;
 const computedUrl = (url || "localhost:3000").replace(/^https?:\/\//, "");
 ---
 
-<div class:list={["mock", className]} {...rest}>
+<div class:list={["mock", "container", className]} {...rest}>
   <div class="mock__head">
     <WindowControls />
 
@@ -30,13 +30,9 @@ const computedUrl = (url || "localhost:3000").replace(/^https?:\/\//, "");
 
 <style>
   .mock {
-    box-shadow: var(--box-shadow);
-    border: var(--border);
-    border-radius: var(--border-radius-md);
-
+    padding: 0;
     display: flex;
     flex-direction: column;
-
     overflow: hidden;
   }
 

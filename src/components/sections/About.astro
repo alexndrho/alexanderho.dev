@@ -23,7 +23,7 @@ import meCycling from "@/assets/me-cycling.jpg";
 ---
 
 <section id="about" class="section">
-  <div class="container container--section">
+  <div class="layout layout--section">
     <h2>About me</h2>
 
     <Terminal headline="skidy@fedora:~">
@@ -163,7 +163,7 @@ import meCycling from "@/assets/me-cycling.jpg";
     <div class="about__extra">
       <LocalTime />
 
-      <div class="github-calendar-card">
+      <div class="github-calendar-card container">
         <p class="github-calendar-card__label">GitHub contributions</p>
 
         <GitHubCalendar client:only="react" username="alexndrho" />
@@ -227,10 +227,6 @@ import meCycling from "@/assets/me-cycling.jpg";
     .github-calendar-card {
       min-width: 0;
       max-width: 100%;
-      padding: var(--spacing-md);
-      border-radius: var(--border-radius-md);
-      box-shadow: var(--box-shadow);
-      border: var(--border);
     }
 
     .github-calendar-card__label {

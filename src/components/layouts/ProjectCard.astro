@@ -21,25 +21,25 @@ interface Props {
 const { type = "website", title, description, image, techStack, liveLink, sourceLink } = Astro.props;
 ---
 
-<article class="card">
+<article class="project container">
   {
     type === "website" ? (
-      <WebsiteMock url={liveLink} image={image} class="card__mock" />
+      <WebsiteMock url={liveLink} image={image} class="project__mock" />
     ) : (
-      <DesktopMock image={image} class="card__mock" />
+      <DesktopMock image={image} class="project__mock" />
     )
   }
 
-  <div class="card__info">
-    <h3 class="card__title">{title}</h3>
-    <p class="card__desc">{description}</p>
+  <div class="project__info">
+    <h3 class="project__title">{title}</h3>
+    <p class="project__desc">{description}</p>
 
-    <ul class="card__tech-stacks">
+    <ul class="project__tech-stacks">
       {
         techStack.map((item) => {
           const Icon = item.icon;
           return (
-            <li class="card__tech-stack">
+            <li class="project__tech-stack">
               {Icon && <Icon />}
               {item.tech}
             </li>
@@ -48,12 +48,12 @@ const { type = "website", title, description, image, techStack, liveLink, source
       }
     </ul>
 
-    <div class="card__links">
+    <div class="project__links">
       {
         liveLink && (
           <a href={liveLink} target="_blank" rel="noreferrer" class="btn btn--primary btn--dashed-effect">
             Live
-            <TbExternalLink className="card__link__icon" />
+            <TbExternalLink className="project__link__icon" />
           </a>
         )
       }
@@ -62,7 +62,7 @@ const { type = "website", title, description, image, techStack, liveLink, source
         sourceLink && (
           <a href={sourceLink} target="_blank" rel="noreferrer" class="btn btn--primary btn--dashed-effect">
             Source
-            <TbBrandGithub className="card__link__icon" />
+            <TbBrandGithub className="project__link__icon" />
           </a>
         )
       }
@@ -71,34 +71,28 @@ const { type = "website", title, description, image, techStack, liveLink, source
 </article>
 
 <style>
-  .card {
+  .project {
     margin-bottom: var(--spacing-lg);
-    background-color: var(--color-light);
-    padding: var(--spacing-lg);
-    border: var(--border);
-    border-radius: var(--border-radius-md);
-    box-shadow: var(--box-shadow);
-
     display: flex;
     flex-direction: column;
     gap: var(--spacing-lg);
   }
 
-  .card:last-child {
+  .project:last-child {
     margin-bottom: 0;
   }
 
-  .card__info {
+  .project__info {
     display: flex;
     flex-direction: column;
   }
 
-  .card__title {
+  .project__title {
     margin-bottom: var(--spacing-sm);
     font-size: var(--font-size-2xl);
   }
 
-  .card__title::after {
+  .project__title::after {
     content: "";
     display: block;
     height: 0.15em;
@@ -107,13 +101,13 @@ const { type = "website", title, description, image, techStack, liveLink, source
     border-radius: var(--border-radius-md);
   }
 
-  .card .card__desc {
+  .project .project__desc {
     margin-bottom: var(--spacing-sm);
     color: var(--color-secondary);
     font-weight: 500;
   }
 
-  .card__tech-stacks {
+  .project__tech-stacks {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -124,7 +118,7 @@ const { type = "website", title, description, image, techStack, liveLink, source
     flex-wrap: wrap;
   }
 
-  .card__tech-stack {
+  .project__tech-stack {
     padding: 0.125em 0.5em;
     border-radius: var(--border-radius-sm);
     background-color: var(--color-secondary);
@@ -138,36 +132,36 @@ const { type = "website", title, description, image, techStack, liveLink, source
     gap: 0.25em;
   }
 
-  .card__links {
+  .project__links {
     font-size: var(--font-size-sm);
     display: flex;
     flex-direction: row;
     gap: var(--spacing-sm);
   }
 
-  .card__link__icon {
+  .project__link__icon {
     font-size: var(--font-size-xl);
   }
 
   @media (--lg-viewport) {
-    .card {
+    .project {
       align-items: center;
     }
 
-    .card:nth-child(odd) {
+    .project:nth-child(odd) {
       flex-direction: row-reverse;
     }
 
-    .card:nth-child(even) {
+    .project:nth-child(even) {
       flex-direction: row;
     }
 
-    .card__mock {
+    .project__mock {
       min-width: 0;
       flex: 10;
     }
 
-    .card__info {
+    .project__info {
       flex: 8;
     }
   }

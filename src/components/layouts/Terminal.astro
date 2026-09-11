@@ -8,7 +8,7 @@ interface Props {
 const { headline } = Astro.props;
 ---
 
-<div class="terminal">
+<div class="terminal container">
   <div class="terminal__head">
     <div class="terminal__window-controls">
       <WindowControls />
@@ -28,10 +28,9 @@ const { headline } = Astro.props;
 
     .terminal {
       margin-bottom: var(--spacing-md);
-      padding: var(--spacing-md);
       background-color: var(--color-dark);
       color: var(--color-light);
-      border-radius: var(--border-radius-md);
+      border: none;
 
       display: flex;
       flex-direction: column;

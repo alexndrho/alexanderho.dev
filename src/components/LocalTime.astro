@@ -13,7 +13,7 @@ const {
 ---
 
 <div
-  class:list={["local-time", className]}
+  class:list={["local-time", "container", className]}
   data-local-time-root
   data-time-zone={timeZone}
   data-locale={locale}
@@ -114,12 +114,6 @@ const {
 
 <style>
   .local-time {
-    background-color: var(--color-light);
-    padding: var(--spacing-md);
-    box-shadow: var(--box-shadow);
-    border-radius: var(--border-radius-md);
-    border: var(--border);
-
     font-size: var(--font-size-lg);
     font-weight: 700;
     white-space: nowrap;
