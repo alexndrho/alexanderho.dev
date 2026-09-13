@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import { FaLock } from "react-icons/fa";
 
 import WindowControls from "./WindowControls.astro";
+import { stripUrlProtocol } from "@/utils/string";
 
 interface Props {
   url?: string | undefined;
@@ -12,7 +13,7 @@ interface Props {
 
 const { url, image, class: className, ...rest } = Astro.props;
 
-const computedUrl = (url || "localhost:3000").replace(/^https?:\/\//, "");
+const computedUrl = url ? stripUrlProtocol(url) : "localhost:3000";
 ---
 
 <div class:list={["mock", "container", className]} {...rest}>

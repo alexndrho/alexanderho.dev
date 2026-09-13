@@ -2,6 +2,7 @@
 import { FaAt, FaBarsStaggered, FaGithub, FaLinkedin, FaXmark } from "react-icons/fa6";
 
 import Footer from "./Footer.astro";
+import { stripTrailingSlash } from "@/utils/string";
 
 interface Props {
   navbarStick?: boolean | undefined;
@@ -9,12 +10,10 @@ interface Props {
 
 const { navbarStick } = Astro.props;
 
-const normalizePath = (path: string) => (path === "/" ? path : path.replace(/\/$/, ""));
-
-const currentPath = normalizePath(Astro.url.pathname);
+const currentPath = stripTrailingSlash(Astro.url.pathname);
 
 const isMenuActive = (url: string) => {
-  return currentPath === normalizePath(url);
+  return currentPath === stripTrailingSlash(url);
 };
 
 const menuLinks = [
