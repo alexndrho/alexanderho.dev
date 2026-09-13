@@ -15,7 +15,7 @@ const gallery = (await getCollection("gallery")).sort((a, b) => b.data.pubDate.v
   description="Explore the collection of digital art, illustrations, and creative projects by Alexander Gabriel Ho."
   canonicalURL={canonicalHref}
 >
-  <main class="layout layout--section">
+  <div class="layout layout--section">
     <h1>Gallery</h1>
 
     <p>
@@ -24,7 +24,7 @@ const gallery = (await getCollection("gallery")).sort((a, b) => b.data.pubDate.v
     </p>
 
     <GalleryPreview gallery={gallery} />
-  </main>
+  </div>
 
   <style>
     html {

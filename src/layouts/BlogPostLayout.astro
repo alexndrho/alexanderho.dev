@@ -21,7 +21,7 @@ const { title, description, pubDate, updatedDate, heroImage, minutesRead, canoni
 
   <ProgressBar />
 
-  <main>
+  <div class="content">
     <div class="hero-image">
       {
         heroImage && (
@@ -59,12 +59,12 @@ const { title, description, pubDate, updatedDate, heroImage, minutesRead, canoni
 
       <slot />
     </div>
-  </main>
+  </div>
 
   <ScrollToTop />
 
   <style>
-    main {
+    .content {
       padding: 2.5em 1em;
       width: 100%;
       max-width: 100%;

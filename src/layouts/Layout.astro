@@ -6,14 +6,13 @@ export interface Props {
   description: string;
   canonicalURL?: string | undefined;
   image?: ImageMetadata | undefined;
-
-  navBarFloat?: boolean | undefined;
+  navbarStick?: boolean | undefined;
 }
 
-const { title, description, canonicalURL, image, navBarFloat } = Astro.props;
+const { title, description, canonicalURL, image, navbarStick } = Astro.props;
 ---
 
-<BaseLayout title={title} description={description} canonicalURL={canonicalURL} image={image} navBarFloat={navBarFloat}>
+<BaseLayout title={title} description={description} canonicalURL={canonicalURL} image={image} navbarStick={navbarStick}>
   <slot name="head" slot="head" />
 
   <slot />

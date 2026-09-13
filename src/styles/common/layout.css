@@ -8,7 +8,7 @@
   max-width: calc(var(--size-max-width-md) + (var(--spacing-md) * 2));
 }
 
-.layout--nav {
+.layout--navbar {
   padding-top: var(--spacing-sm);
   padding-bottom: var(--spacing-sm);
 }

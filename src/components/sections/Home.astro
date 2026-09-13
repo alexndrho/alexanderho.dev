@@ -1,6 +1,5 @@
 ---
 import { Image } from "astro:assets";
-import { FaGithub, FaLinkedin, FaAt } from "react-icons/fa6";
 import me from "@assets/me.png";
 ---
 
@@ -17,32 +16,6 @@ import me from "@assets/me.png";
         <span class="hero__span hero__span--highlight">Full Stack Web Developer</span>{" "}
          based in Manila, Philippines.
       </p>
-
-      <div class="hero__links">
-        <a
-          href="https://github.com/alexndrho"
-          aria-label="Github"
-          target="_blank"
-          rel="noreferrer"
-          class="link link--icon"
-        >
-          <FaGithub />
-        </a>
-
-        <a
-          href="https://www.linkedin.com/in/alexander-gabriel-ho/"
-          aria-label="LinkedIn"
-          target="_blank"
-          rel="noreferrer"
-          class="link link--icon"
-        >
-          <FaLinkedin />
-        </a>
-
-        <a href="mailto: ho.alexander.g@gmail.com" aria-label="email" class="link link--icon">
-          <FaAt />
-        </a>
-      </div>
     </div>
 
     <div>
@@ -110,11 +83,6 @@ import me from "@assets/me.png";
   .hero__description {
     margin: 0;
     line-height: 1;
-  }
-
-  .hero__links {
-    display: flex;
-    gap: 0.75em;
   }
 
   /* hero-img */

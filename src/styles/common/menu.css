@@ -1,0 +1,24 @@
+.menu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu li > * {
+  display: block;
+  text-decoration: none;
+  color: var(--color-dark) !important;
+  padding: 0.5em 1em;
+  border-radius: var(--border-radius-md);
+  font-weight: 600;
+}
+
+.menu li > *:hover {
+  background-color: color-mix(in srgb, var(--color-dark) 10%, transparent) !important;
+}
+
+.menu li > .menu-active,
+.menu li > .menu-active:hover {
+  color: var(--color-light) !important;
+  background-color: var(--color-dark) !important;
+}

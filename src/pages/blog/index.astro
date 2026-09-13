@@ -20,7 +20,7 @@ const blogs = (await getCollection("blog")).sort((a, b) => b.data.pubDate.valueO
     <link rel="alternate" type="application/rss+xml" title="RSS Feed" href={new URL("blog/rss.xml", Astro.site)} />
   </slot>
 
-  <main class="layout layout--section">
+  <div class="layout layout--section">
     <h1>Blog</h1>
 
     <div class="blog-hero">
@@ -39,7 +39,7 @@ const blogs = (await getCollection("blog")).sort((a, b) => b.data.pubDate.valueO
     </div>
 
     <BlogPreview blogs={blogs} />
-  </main>
+  </div>
 
   <style>
     .blog-hero {

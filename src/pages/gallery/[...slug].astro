@@ -27,7 +27,7 @@ const post = Astro.props;
   canonicalURL={canonicalHref}
   image={post.data.image}
 >
-  <main class="gallery layout layout--section">
+  <div class="gallery layout layout--section">
     <a href="/gallery" class="link link--icon close-link" aria-label="Close">
       <TbArrowLeft /> Back to Gallery
     </a>
@@ -52,7 +52,7 @@ const post = Astro.props;
         <FormattedDate date={post.data.pubDate} />
       </div>
     </div>
-  </main>
+  </div>
 
   <style>
     .gallery {

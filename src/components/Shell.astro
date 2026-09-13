@@ -1,0 +1,306 @@
+---
+import { FaAt, FaBarsStaggered, FaGithub, FaLinkedin, FaXmark } from "react-icons/fa6";
+
+import Footer from "./Footer.astro";
+
+interface Props {
+  navbarStick?: boolean | undefined;
+}
+
+const { navbarStick } = Astro.props;
+
+const normalizePath = (path: string) => (path === "/" ? path : path.replace(/\/$/, ""));
+
+const currentPath = normalizePath(Astro.url.pathname);
+
+const isMenuActive = (url: string) => {
+  return currentPath === normalizePath(url);
+};
+
+const menuLinks = [
+  {
+    label: "About",
+    url: "/#about",
+  },
+  {
+    label: "Projects",
+    url: "/#projects",
+  },
+  {
+    label: "Contact",
+    url: "/#contact",
+  },
+];
+
+const menuOtherLinks = [
+  {
+    label: "Gallery",
+    url: "/gallery",
+  },
+  {
+    label: "Blog",
+    url: "/blog",
+  },
+];
+---
+
+<div class="shell">
+  <nav id="shell-menu" class="shell__menu" data-menu>
+    <div class="shell__menu-header">
+      <a href="/#home" class="shell__logo shell__link link link--dark" data-menu-close-button>alexanderho</a>
+
+      <button aria-label="Close navigation menu" data-menu-close-button class="shell__menu-close-btn btn btn--plain">
+        <FaXmark aria-hidden="true" />
+      </button>
+    </div>
+
+    <div class="shell__menu-links">
+      <ul class="menu">
+        {
+          menuLinks.map((item) => (
+            <li>
+              <a href={item.url} data-menu-close-button>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="divider"></div>
+
+      <ul class="menu">
+        {
+          menuOtherLinks.map((item) => (
+            <li>
+              <a href={item.url} data-menu-close-button class:list={[isMenuActive(item.url) && "menu-active"]}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div>
+      <p class="shell__menu-social-title">Socials</p>
+
+      <div class="shell__menu-socials">
+        <a
+          href="https://github.com/alexndrho"
+          aria-label="Github"
+          target="_blank"
+          rel="noreferrer"
+          class="shell__menu-social link link--icon"
+        >
+          <FaGithub />
+        </a>
+
+        <a
+          href="https://www.linkedin.com/in/alexander-gabriel-ho/"
+          aria-label="LinkedIn"
+          target="_blank"
+          rel="noreferrer"
+          class="shell__menu-social link link--icon"
+        >
+          <FaLinkedin />
+        </a>
+
+        <a href="mailto: ho.alexander.g@gmail.com" aria-label="email" class="shell__menu-social link link--icon">
+          <FaAt />
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="shell__content">
+    <nav class:list={["shell__navbar", navbarStick && "shell__navbar--stick"]}>
+      <div class="layout layout--navbar">
+        <div class="shell__logo-container">
+          <button
+            type="button"
+            class="shell__ham-menu btn btn--plain"
+            aria-label="Toggle navigation menu"
+            aria-controls="shell-menu"
+            aria-expanded="false"
+            data-menu-button
+          >
+            <FaBarsStaggered aria-hidden="true" />
+          </button>
+
+          <a href="/#home" class="shell__logo shell__link link link--dark">alexanderho</a>
+        </div>
+      </div>
+    </nav>
+
+    <main class="shell__main">
+      <slot />
+    </main>
+
+    <Footer />
+  </div>
+</div>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const menu = document.querySelector("[data-menu]");
+    const menuButton = document.querySelector("[data-menu-button]");
+    const menuCloseButton = document.querySelectorAll("[data-menu-close-button]");
+
+    const toggleMainMenu = () => {
+      menu?.classList.toggle("shell__menu--show");
+      menuButton?.setAttribute("aria-expanded", String(menu?.classList.contains("shell__menu--show")));
+    };
+
+    const closeMainMenu = () => {
+      menu?.classList.remove("shell__menu--show");
+      menuButton?.setAttribute("aria-expanded", "false");
+    };
+
+    menuButton?.addEventListener("click", toggleMainMenu);
+
+    menuCloseButton?.forEach((link) => {
+      link.addEventListener("click", closeMainMenu);
+    });
+  });
+</script>
+
+<style>
+  .shell {
+    display: flex;
+    min-height: 100dvh;
+  }
+
+  .shell__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .shell__main {
+    flex: 1;
+  }
+
+  .shell__navbar {
+    z-index: 90;
+    background-color: var(--color-light);
+    border-bottom: var(--border);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .shell__navbar--stick {
+    position: sticky;
+    top: 0;
+  }
+
+  .shell__logo-container {
+    display: flex;
+    gap: var(--spacing-md);
+  }
+
+  .shell__logo {
+    font-size: var(--font-size-xl) !important;
+    font-weight: 700 !important;
+    user-select: none;
+  }
+
+  .shell__ham-menu {
+    font-size: var(--font-size-xl);
+  }
+
+  .shell__menu {
+    position: fixed;
+    z-index: 99;
+    transform: translateX(-100%);
+    visibility: hidden;
+    pointer-events: none;
+    inset: 0;
+
+    padding: var(--spacing-md);
+    background-color: var(--color-light);
+    border-right: var(--border);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+
+    transition:
+      transform 0.2s ease-out,
+      visibility 0s linear 0.2s;
+  }
+
+  .shell__menu--show {
+    transform: translateX(0);
+    visibility: visible;
+    pointer-events: auto;
+    transition-delay: 0s;
+  }
+
+  .shell__menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .shell__menu-close-btn {
+    font-size: var(--font-size-2xl);
+  }
+
+  .shell__menu-links {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--spacing-md);
+  }
+
+  .shell__menu-social-title {
+    margin: 0;
+    color: var(--color-secondary);
+    font-weight: 600;
+  }
+
+  .shell__menu-socials {
+    display: flex;
+    gap: var(--spacing-xs);
+  }
+
+  .shell__menu-social {
+    font-size: var(--font-size-3xl);
+  }
+
+  .shell__link {
+    text-decoration: none;
+    font-size: var(--font-size-2xl);
+    font-weight: 600;
+  }
+
+  @media (--xl-viewport) {
+    .shell {
+      --menu-width: 14rem;
+    }
+
+    .shell__navbar {
+      display: none;
+    }
+
+    .shell__menu {
+      inset: 0 auto 0 0;
+      width: var(--menu-width);
+      transform: none;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .shell__content {
+      margin-left: var(--menu-width);
+      width: calc(100% - var(--menu-width));
+    }
+
+    .shell__menu-close-btn {
+      display: none;
+    }
+  }
+</style>

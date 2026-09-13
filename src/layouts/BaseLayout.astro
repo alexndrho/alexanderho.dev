@@ -1,18 +1,16 @@
 ---
 import BaseHead from "@components/BaseHead.astro";
-import Navbar from "@/components/Navbar.astro";
-import Footer from "@/components/Footer.astro";
+import Shell from "@/components/Shell.astro";
 
 interface Props {
   title: string;
   description: string;
   canonicalURL?: string | undefined;
   image?: ImageMetadata | undefined;
-
-  navBarFloat?: boolean | undefined;
+  navbarStick?: boolean | undefined;
 }
 
-const { title, description, canonicalURL, image, navBarFloat } = Astro.props;
+const { title, description, canonicalURL, image, navbarStick } = Astro.props;
 ---
 
 <html lang="en">
@@ -22,25 +20,8 @@ const { title, description, canonicalURL, image, navBarFloat } = Astro.props;
     </BaseHead>
   </head>
   <body>
-    <div class="main-container">
-      <Navbar float={navBarFloat} />
-      <div class="content-container">
-        <slot />
-      </div>
-      <Footer />
-    </div>
-
-    <style>
-      .main-container {
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-        height: 100%;
-      }
-
-      .content-container {
-        flex: 1;
-      }
-    </style>
+    <Shell navbarStick={navbarStick}>
+      <slot />
+    </Shell>
   </body>
 </html>
