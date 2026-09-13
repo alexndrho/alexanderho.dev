@@ -20,6 +20,55 @@ import TerminalPrompt from "@components/TerminalPrompt.astro";
 import LocalTime from "../LocalTime.astro";
 import GitHubCalendar from "./react/GitHubCalendar";
 import meCycling from "@/assets/me-cycling.jpg";
+
+const techStack = [
+  {
+    label: "Languages",
+    value: ["Javascript", "Typescript", "PHP", "Lua", "Python", "C++", "C#", "Java", "Kotlin", "QML", "Bash"],
+  },
+  {
+    label: "Frontend",
+    value: [
+      "React",
+      "Next.js",
+      "Astro",
+      "Tanstack Start",
+      "React Router",
+      "Tanstack Query",
+      "Jotai",
+      "Zustand",
+      "CSS",
+      "Tailwind CSS",
+      "PostCSS",
+      "Vite",
+      "Webpack",
+    ],
+  },
+  {
+    label: "Backend",
+    value: ["Node.js", "Express.js", "Fastify", "Laravel", "CodeIgniter", "REST", "WebRTC", "WebSocket"],
+  },
+  {
+    label: "Mobile",
+    value: ["Expo", "React Native"],
+  },
+  {
+    label: "Database",
+    value: ["Prisma", "Drizzle", "PostgreSQL", "SQLite", "MySQL", "Redis", "Firebase", "MongoDB"],
+  },
+  {
+    label: "DevOps",
+    value: ["Docker", "Vercel", "Cloudflare", "Netlify", "DigitalOcean"],
+  },
+  {
+    label: "Tools",
+    value: ["Git", "Github", "GitLab", "Neovim", "Visual Studio", "JetBrains", "Bruno", "Postman"],
+  },
+  {
+    label: "OS & Distro",
+    value: ["Linux", "Fedora", "Ubuntu", "Windows", "macOS"],
+  },
+];
 ---
 
 <section id="about" class="section">
@@ -163,66 +212,7 @@ import meCycling from "@/assets/me-cycling.jpg";
       <TerminalPrompt prompt="cat stack.yml">
         <div class="stack">
           {
-            [
-              {
-                label: "Languages",
-                value: [
-                  "Javascript",
-                  "Typescript",
-                  "PHP",
-                  "Lua",
-                  "Python",
-                  "C++",
-                  "C#",
-                  "Java",
-                  "Kotlin",
-                  "QML",
-                  "Bash",
-                ],
-              },
-              {
-                label: "Frontend",
-                value: [
-                  "React",
-                  "Next.js",
-                  "Astro",
-                  "Tanstack Start",
-                  "React Router",
-                  "Tanstack Query",
-                  "Jotai",
-                  "Zustand",
-                  "CSS",
-                  "Tailwind CSS",
-                  "PostCSS",
-                  "Vite",
-                  "Webpack",
-                ],
-              },
-              {
-                label: "Backend",
-                value: ["Node.js", "Express.js", "Fastify", "Laravel", "CodeIgniter", "REST", "WebRTC", "WebSocket"],
-              },
-              {
-                label: "Mobile",
-                value: ["Expo", "React Native"],
-              },
-              {
-                label: "Database",
-                value: ["Prisma", "Drizzle", "PostgreSQL", "SQLite", "MySQL", "Redis", "Firebase", "MongoDB"],
-              },
-              {
-                label: "DevOps",
-                value: ["Docker", "Vercel", "Cloudflare", "Netlify", "DigitalOcean"],
-              },
-              {
-                label: "Tools",
-                value: ["Git", "Github", "GitLab", "Neovim", "Visual Studio", "JetBrains", "Bruno", "Postman"],
-              },
-              {
-                label: "OS & Distro",
-                value: ["Linux", "Fedora", "Ubuntu", "Windows", "macOS"],
-              },
-            ].map((item) => (
+            techStack.map((item) => (
               <>
                 <p class="highlight">{item.label}</p>
                 <p>{item.value.join(", ")}</p>
