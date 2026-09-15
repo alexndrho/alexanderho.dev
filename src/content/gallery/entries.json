@@ -1,0 +1,44 @@
+[
+  {
+    "id": "where-peace-takes-root",
+    "title": "Where peace takes root",
+    "image": "./where-peace-takes-root.png",
+    "pubDate": "2025-12-18"
+  },
+  {
+    "id": "sky",
+    "title": "Sky",
+    "image": "./sky.jpg",
+    "pubDate": "2022-04-05"
+  },
+  {
+    "id": "mind-blown",
+    "title": "Mind Blown",
+    "image": "./mind-blown.jpg",
+    "pubDate": "2022-02-18"
+  },
+  {
+    "id": "ramen-house",
+    "title": "Ramen House",
+    "image": "./ramen-house.jpg",
+    "pubDate": "2022-02-11"
+  },
+  {
+    "id": "krusty-krab",
+    "title": "Krusty Krab",
+    "image": "./krusty-krab.jpg",
+    "pubDate": "2022-01-22"
+  },
+  {
+    "id": "weird-frog",
+    "title": "Weird Frog",
+    "image": "./weird-frog.gif",
+    "pubDate": "2022-01-18"
+  },
+  {
+    "id": "ramen",
+    "title": "Ramen",
+    "image": "./ramen.png",
+    "pubDate": "2022-01-17"
+  }
+]
