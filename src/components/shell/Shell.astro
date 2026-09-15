@@ -148,11 +148,15 @@ const menuOtherLinks = [
 
     const toggleMainMenu = () => {
       menu?.classList.toggle("shell__menu--show");
-      menuButton?.setAttribute("aria-expanded", String(menu?.classList.contains("shell__menu--show")));
+
+      const isMenuOpen = menu?.classList.contains("shell__menu--show");
+      document.documentElement.classList.toggle("shell-menu-open", isMenuOpen);
+      menuButton?.setAttribute("aria-expanded", String(isMenuOpen));
     };
 
     const closeMainMenu = () => {
       menu?.classList.remove("shell__menu--show");
+      document.documentElement.classList.remove("shell-menu-open");
       menuButton?.setAttribute("aria-expanded", "false");
     };
 
@@ -161,6 +165,10 @@ const menuOtherLinks = [
     menuCloseButton?.forEach((link) => {
       link.addEventListener("click", closeMainMenu);
     });
+  });
+
+  document.addEventListener("astro:before-swap", () => {
+    document.documentElement.classList.remove("shell-menu-open");
   });
 </script>
 
@@ -277,6 +285,10 @@ const menuOtherLinks = [
     font-weight: 600;
   }
 
+  :global(html.shell-menu-open) {
+    overflow-y: hidden;
+  }
+
   @media (--xl-viewport) {
     .shell {
       --menu-width: 14rem;
@@ -301,6 +313,10 @@ const menuOtherLinks = [
 
     .shell__menu-close-btn {
       display: none;
+    }
+
+    :global(html.shell-menu-open) {
+      overflow-y: unset;
     }
   }
 </style>
