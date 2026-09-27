@@ -5,6 +5,7 @@ import About from "@components/sections/About.astro";
 import Projects from "@components/sections/Projects.astro";
 import Blog from "@/components/sections/Blog.astro";
 import Gallery from "@/components/sections/Gallery.astro";
+import Certifications from "@components/sections/Certifications.astro";
 import Contact from "@/components/sections/Contact.astro";
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -22,5 +23,6 @@ const canonicalHref = canonicalURL.toString().replace(/\/$/, "");
   <Projects />
   <Blog />
   <Gallery />
+  <Certifications />
   <Contact />
 </Layout>
