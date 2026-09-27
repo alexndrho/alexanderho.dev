@@ -22,3 +22,16 @@
   padding-top: var(--spacing-sm);
   padding-bottom: var(--spacing-sm);
 }
+
+.layout--section__banner {
+  margin-bottom: var(--spacing-lg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.layout--section__banner__title {
+  margin: 0;
+}

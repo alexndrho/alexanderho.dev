@@ -4,10 +4,6 @@
   transition: color 0.2s ease-out;
 }
 
-.link > svg {
-  vertical-align: -0.125em;
-}
-
 .link:hover {
   text-decoration: underline;
 }
@@ -26,6 +22,23 @@
 
 .link--secondary:hover {
   color: var(--color-primary);
+}
+
+.link--with-icon {
+  display: inline;
+}
+
+.link--with-icon > svg {
+  display: inline-block;
+  vertical-align: -0.125em;
+}
+
+.link--with-icon > svg:first-child {
+  margin-inline-end: 0.5em;
+}
+
+.link--with-icon > svg:last-child {
+  margin-inline-start: 0.5em;
 }
 
 .link--icon {

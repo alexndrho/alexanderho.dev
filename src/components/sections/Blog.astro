@@ -11,10 +11,10 @@ const blogs = (await getCollection("blog"))
 
 <section id="blog" class="section">
   <div class="layout layout--section">
-    <div class="banner">
-      <h2 class="banner__title">Latest blog posts</h2>
-      <a href="/blog" class="link banner__link"
-        >View all posts
+    <div class="layout--section__banner">
+      <h2 class="layout--section__banner__title">Latest blog posts</h2>
+      <a href="/blog" class="link link--with-icon">
+        View all posts
         <TbArrowRight size="1em" />
       </a>
     </div>
@@ -22,24 +22,3 @@ const blogs = (await getCollection("blog"))
     <BlogPreview blogs={blogs} />
   </div>
 </section>
-
-<style>
-  .banner {
-    margin-bottom: var(--spacing-lg);
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    column-gap: var(--spacing-md);
-    flex-wrap: wrap;
-  }
-
-  .banner__title {
-    margin: 0;
-  }
-
-  .banner__link {
-    display: flex;
-    align-items: center;
-    gap: 0.25em;
-  }
-</style>
