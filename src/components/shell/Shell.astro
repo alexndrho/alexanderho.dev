@@ -1,8 +1,10 @@
 ---
+import { Image } from "astro:assets";
 import { FaAt, FaBarsStaggered, FaGithub, FaLinkedin, FaXmark } from "react-icons/fa6";
 
 import Footer from "./Footer.astro";
 import { stripTrailingSlash } from "@/utils/string";
+import me from "@assets/me.png";
 
 interface Props {
   navbarStick?: boolean | undefined;
@@ -39,7 +41,10 @@ const menuLinks: { label: string; url: string }[] = [
 <div class="shell">
   <nav id="shell-menu" class="shell__menu" data-menu>
     <div class="shell__menu-header">
-      <a href="/#home" class="shell__logo shell__link link link--dark" data-menu-close-button>alexanderho</a>
+      <a href="/#home" class="shell__logo shell__link link link--dark" data-menu-close-button>
+        <Image src={me} alt="" class="shell__logo-picture" />
+         alexanderho
+      </a>
 
       <button aria-label="Close navigation menu" data-menu-close-button class="shell__menu-close-btn btn btn--plain">
         <FaXmark aria-hidden="true" />
@@ -106,7 +111,10 @@ const menuLinks: { label: string; url: string }[] = [
             <FaBarsStaggered aria-hidden="true" />
           </button>
 
-          <a href="/#home" class="shell__logo shell__link link link--dark">alexanderho</a>
+          <a href="/#home" class="shell__logo shell__link link link--dark">
+            <Image src={me} alt="" class="shell__logo-picture" />
+             alexanderho
+          </a>
         </div>
       </div>
     </nav>
@@ -189,6 +197,18 @@ const menuLinks: { label: string; url: string }[] = [
     font-size: var(--font-size-xl) !important;
     font-weight: 700 !important;
     user-select: none;
+
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+  }
+
+  .shell__logo-picture {
+    --logo-picture-size: 1.5em;
+
+    width: var(--logo-picture-size);
+    height: var(--logo-picture-size);
+    border-radius: var(--border-radius-md);
   }
 
   .shell__ham-menu {
