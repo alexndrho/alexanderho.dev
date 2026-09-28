@@ -16,24 +16,11 @@ const isMenuActive = (url: string) => {
   return currentPath === stripTrailingSlash(url);
 };
 
-type NavLinkType = { label: string; url: string };
-
-const menuLinks: NavLinkType[] = [
-  {
-    label: "About",
-    url: "/#about",
-  },
+const menuLinks: { label: string; url: string }[] = [
   {
     label: "Projects",
-    url: "/#projects",
+    url: "/projects",
   },
-  {
-    label: "Contact",
-    url: "/#contact",
-  },
-];
-
-const menuOtherLinks: NavLinkType[] = [
   {
     label: "Certifications",
     url: "/certifications",
@@ -63,20 +50,6 @@ const menuOtherLinks: NavLinkType[] = [
       <ul class="menu">
         {
           menuLinks.map((item) => (
-            <li>
-              <a href={item.url} data-menu-close-button>
-                {item.label}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-
-      <div class="divider"></div>
-
-      <ul class="menu">
-        {
-          menuOtherLinks.map((item) => (
             <li>
               <a href={item.url} data-menu-close-button class:list={[isMenuActive(item.url) && "menu-active"]}>
                 {item.label}
