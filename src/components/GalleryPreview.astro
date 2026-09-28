@@ -26,7 +26,7 @@ const { gallery } = Astro.props;
 <style>
   .gallery {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--spacing-md);
   }
 
@@ -52,12 +52,6 @@ const { gallery } = Astro.props;
   }
 
   @media (--sm-viewport) {
-    .gallery {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (--lg-viewport) {
     .gallery {
       grid-template-columns: repeat(3, 1fr);
     }
