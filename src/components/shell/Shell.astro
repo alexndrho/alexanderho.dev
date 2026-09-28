@@ -16,7 +16,9 @@ const isMenuActive = (url: string) => {
   return currentPath === stripTrailingSlash(url);
 };
 
-const menuLinks = [
+type NavLinkType = { label: string; url: string };
+
+const menuLinks: NavLinkType[] = [
   {
     label: "About",
     url: "/#about",
@@ -26,16 +28,16 @@ const menuLinks = [
     url: "/#projects",
   },
   {
-    label: "Certifications",
-    url: "/#certifications",
-  },
-  {
     label: "Contact",
     url: "/#contact",
   },
 ];
 
-const menuOtherLinks = [
+const menuOtherLinks: NavLinkType[] = [
+  {
+    label: "Certifications",
+    url: "/certifications",
+  },
   {
     label: "Gallery",
     url: "/gallery",
