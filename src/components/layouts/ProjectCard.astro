@@ -137,12 +137,12 @@ const { type, title, description, image, techStack, liveLink, sourceLink } = Ast
       align-items: center;
     }
 
-    .project:nth-child(odd) {
-      flex-direction: row-reverse;
+    .project:nth-of-type(odd) {
+      flex-direction: row;
     }
 
-    .project:nth-child(even) {
-      flex-direction: row;
+    .project:nth-of-type(even) {
+      flex-direction: row-reverse;
     }
 
     .project__mock {
