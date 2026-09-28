@@ -1,18 +1,13 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import type { Props as BaseLayoutProps } from "@/layouts/BaseLayout.astro";
 
-export interface Props {
-  title: string;
-  description: string;
-  canonicalURL?: string | undefined;
-  image?: ImageMetadata | undefined;
-  navbarStick?: boolean | undefined;
-}
+export interface Props extends BaseLayoutProps {}
 
-const { title, description, canonicalURL, image, navbarStick } = Astro.props;
+const { ...rest } = Astro.props;
 ---
 
-<BaseLayout title={title} description={description} canonicalURL={canonicalURL} image={image} navbarStick={navbarStick}>
+<BaseLayout {...rest}>
   <slot name="head" slot="head" />
 
   <slot />
