@@ -20,18 +20,6 @@ const canonicalHref = canonicalURL.toString().replace(/\/$/, "");
       projects.
     </p>
 
-    {
-      projects.map((project) => (
-        <ProjectCard
-          type={project.type}
-          title={project.title}
-          description={project.description}
-          image={project.image}
-          techStack={project.techStack}
-          liveLink={project.liveLink}
-          sourceLink={project.sourceLink}
-        />
-      ))
-    }
+    {projects.map((project) => <ProjectCard {...project} />)}
   </div>
 </Layout>
