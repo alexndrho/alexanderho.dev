@@ -1,0 +1,107 @@
+import type { IconType } from "react-icons";
+import { FaNodeJs, FaReact } from "react-icons/fa6";
+import { TbBrandMantine, TbBrandMongodb, TbBrandNextjs, TbSettings } from "react-icons/tb";
+import { SiExpress, SiNeovim, SiNiri, SiSocketdotio, SiTailwindcss, SiWayland, SiZsh } from "react-icons/si";
+import { BiLogoPostgresql } from "react-icons/bi";
+import { MdCable } from "react-icons/md";
+import { RxStitchesLogo } from "react-icons/rx";
+import { LuShell } from "react-icons/lu";
+import { DiTerminal } from "react-icons/di";
+
+import stickyThoughtsPreview from "@assets/project-previews/stickythoughts.png";
+import dotfilesPreview from "@assets/project-previews/dotfiles.png";
+import linkUpPreview from "@assets/project-previews/linkup.png";
+import brainiacPreview from "@assets/project-previews/brainiac.png";
+import blogPostPreview from "@assets/project-previews/blog-post.png";
+
+export type ProjectType = {
+  type: "website" | "desktop";
+  title: string;
+  description: string;
+  image: ImageMetadata;
+  techStack: {
+    icon: IconType;
+    tech: string;
+  }[];
+  liveLink?: string;
+  sourceLink?: string;
+};
+
+export const projects: ProjectType[] = [
+  {
+    type: "website",
+    title: "StickyThoughts",
+    description:
+      "Post your thoughts, opinions, and experiences anonymously. Whether you're looking to vent about your day, share your political views, or connect with other people.",
+    image: stickyThoughtsPreview,
+    techStack: [
+      { icon: TbBrandNextjs, tech: "Next.js" },
+      { icon: BiLogoPostgresql, tech: "PostgreSQL" },
+    ],
+    liveLink: "https://stickythoughts.app",
+  },
+
+  {
+    type: "desktop",
+    title: "dotfiles",
+    description:
+      "A keyboard-driven desktop shell for Linux, with dynamic theming, smooth animations, and a collection of configurations",
+    image: dotfilesPreview,
+    techStack: [
+      { icon: SiNiri, tech: "Niri" },
+      { icon: LuShell, tech: "Quickshell" },
+      { icon: SiWayland, tech: "Wayland" },
+      { icon: DiTerminal, tech: "Kitty" },
+      { icon: SiZsh, tech: "Zsh" },
+      { icon: SiNeovim, tech: "Neovim" },
+    ],
+    sourceLink: "https://github.com/alexndrho/dotfiles",
+  },
+
+  {
+    type: "website",
+    title: "LinkUp",
+    description:
+      "An anonymous random chat application that connects strangers worldwide through video chat, text-only messaging, or public chat.",
+    image: linkUpPreview,
+    techStack: [
+      { icon: TbBrandNextjs, tech: "Next.js" },
+      { icon: SiSocketdotio, tech: "Socket.IO" },
+      { icon: MdCable, tech: "PeerJS" },
+      { icon: SiTailwindcss, tech: "TailwindCSS" },
+    ],
+    liveLink: "https://linkup-4kmm.onrender.com",
+    sourceLink: "https://github.com/alexndrho/linkup",
+  },
+
+  {
+    type: "website",
+    title: "Brainiac",
+    description: "Test your knowledge, the trivia app that challenges your mind.",
+    image: brainiacPreview,
+    techStack: [
+      { icon: TbBrandNextjs, tech: "Next.js" },
+      { icon: TbBrandMantine, tech: "Mantine" },
+      { icon: TbSettings, tech: "API" },
+    ],
+    liveLink: "https://brainiac.alexanderho.dev",
+    sourceLink: "https://github.com/alexndrho/brainiac",
+  },
+
+  {
+    type: "website",
+    title: "Blog",
+    description:
+      "A blog posting website allows users to create an account, write blogs in Markdown format, and add photos, videos, and other media. Users canalso update their personal information and upload a profile picture.",
+    image: blogPostPreview,
+    techStack: [
+      { icon: TbBrandMongodb, tech: "MongoDB" },
+      { icon: SiExpress, tech: "Express" },
+      { icon: FaReact, tech: "React" },
+      { icon: FaNodeJs, tech: "Node" },
+      { icon: RxStitchesLogo, tech: "Stitches" },
+    ],
+    liveLink: "https://blog-post-k6bm.onrender.com",
+    sourceLink: "https://github.com/alexndrho/blog-post",
+  },
+] as const;

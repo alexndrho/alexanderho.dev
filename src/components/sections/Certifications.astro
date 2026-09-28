@@ -1,89 +1,23 @@
 ---
-import { certifications } from "@/constants/certification";
+import { certificationPreview } from "@/constants/certifications";
+import { TbArrowRight } from "react-icons/tb";
+
+import CertificationsPreview from "../CertificationsPreview.astro";
 ---
 
 <section id="certifications" class="section">
   <div class="layout layout--section">
-    <h2>Certifications</h2>
+    <div class="layout--section__banner">
+      <h2 class="layout--section__banner__title">Certifications</h2>
 
-    <div class="certifications">
-      {
-        certifications.map((item) => (
-          <a href={item.source} target="_blank" rel="noreferrer" class="certification container">
-            <item.logo className="certification__logo" />
-
-            <div>
-              <p class="certification__title">{item.title}</p>
-              <p class="certification__issuer">{item.issuer}</p>
-            </div>
-
-            {item.source && <p class="certification__source">{"[ Verify ]"}</p>}
-          </a>
-        ))
-      }
+      <a href="/certifications" class="link link--with-icon">
+        View all certifications
+        <TbArrowRight size="1em" />
+      </a>
     </div>
+
+    <CertificationsPreview certifications={certificationPreview} />
   </div>
 </section>
 
-<style>
-  .certifications {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: 1fr;
-    gap: var(--spacing-md);
-  }
-
-  .certification {
-    color: var(--color-dark);
-    text-align: center;
-    text-decoration: none;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--spacing-xs);
-
-    transition: box-shadow 0.1s ease-in-out;
-  }
-
-  .certification:hover {
-    box-shadow: var(--content-box-shadow);
-  }
-
-  .certification p {
-    margin: 0;
-  }
-
-  .certification__logo {
-    font-size: var(--spacing-xl);
-  }
-
-  .certification__title {
-    font-weight: 600;
-  }
-
-  .certification__issuer {
-    font-size: var(--font-size-sm);
-    color: var(--color-secondary);
-  }
-
-  .certification__source {
-    font-weight: 600;
-  }
-
-  .certification:hover .certification__source {
-    color: var(--color-primary);
-  }
-
-  @media (--sm-viewport) {
-    .certifications {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-
-  @media (--lg-viewport) {
-    .certifications {
-      grid-template-columns: repeat(4, 1fr);
-    }
-  }
-</style>
+<style></style>

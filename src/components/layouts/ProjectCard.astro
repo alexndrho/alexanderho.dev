@@ -1,24 +1,13 @@
 ---
-import type { IconType } from "react-icons";
 import { TbBrandGithub, TbExternalLink } from "react-icons/tb";
 
 import WebsiteMock from "@components/WebsiteMock.astro";
 import DesktopMock from "@components/DesktopMock.astro";
+import type { ProjectType } from "@/constants/projects";
 
-interface Props {
-  type?: "website" | "desktop";
-  title: string;
-  description: string;
-  image: ImageMetadata;
-  techStack: {
-    icon?: IconType;
-    tech: string;
-  }[];
-  liveLink?: string;
-  sourceLink?: string;
-}
+interface Props extends ProjectType {}
 
-const { type = "website", title, description, image, techStack, liveLink, sourceLink } = Astro.props;
+const { type, title, description, image, techStack, liveLink, sourceLink } = Astro.props;
 ---
 
 <article class="project container">

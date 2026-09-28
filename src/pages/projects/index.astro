@@ -1,0 +1,37 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import ProjectCard from "@/components/layouts/ProjectCard.astro";
+import { projects } from "@/constants/projects";
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const canonicalHref = canonicalURL.toString().replace(/\/$/, "");
+---
+
+<Layout
+  title="Projects - Alexander Gabriel Ho | Full Stack Web Developer"
+  description="Explore projects designed, built, and deployed by Alexander Gabriel Ho."
+  canonicalURL={canonicalHref}
+>
+  <div class="layout layout--section">
+    <h1>Projects</h1>
+
+    <p>
+      These are the projects I've designed, built, and deployed, from small experiments to full projects to full
+      projects.
+    </p>
+
+    {
+      projects.map((project) => (
+        <ProjectCard
+          type={project.type}
+          title={project.title}
+          description={project.description}
+          image={project.image}
+          techStack={project.techStack}
+          liveLink={project.liveLink}
+          sourceLink={project.sourceLink}
+        />
+      ))
+    }
+  </div>
+</Layout>

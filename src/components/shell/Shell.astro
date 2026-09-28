@@ -16,33 +16,22 @@ const isMenuActive = (url: string) => {
   return currentPath === stripTrailingSlash(url);
 };
 
-const menuLinks = [
+const menuLinks: { label: string; url: string }[] = [
   {
-    label: "About",
-    url: "/#about",
+    label: "Blog",
+    url: "/blog",
   },
   {
     label: "Projects",
-    url: "/#projects",
+    url: "/projects",
   },
-  {
-    label: "Certifications",
-    url: "/#certifications",
-  },
-  {
-    label: "Contact",
-    url: "/#contact",
-  },
-];
-
-const menuOtherLinks = [
   {
     label: "Gallery",
     url: "/gallery",
   },
   {
-    label: "Blog",
-    url: "/blog",
+    label: "Certifications",
+    url: "/certifications",
   },
 ];
 ---
@@ -61,20 +50,6 @@ const menuOtherLinks = [
       <ul class="menu">
         {
           menuLinks.map((item) => (
-            <li>
-              <a href={item.url} data-menu-close-button>
-                {item.label}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-
-      <div class="divider"></div>
-
-      <ul class="menu">
-        {
-          menuOtherLinks.map((item) => (
             <li>
               <a href={item.url} data-menu-close-button class:list={[isMenuActive(item.url) && "menu-active"]}>
                 {item.label}
