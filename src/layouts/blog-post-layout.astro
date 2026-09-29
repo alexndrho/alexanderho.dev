@@ -5,7 +5,6 @@ import { Image } from "astro:assets";
 import BaseLayout from "@/layouts/base-layout.astro";
 import ScrollToTop from "@components/scroll-to-top.astro";
 import FormattedDate from "@components/formatted-date.astro";
-import ScrollProgress from "@/components/scroll-progress.astro";
 
 type Props = CollectionEntry<"blog">["data"] & {
   minutesRead: string;
@@ -16,10 +15,8 @@ type Props = CollectionEntry<"blog">["data"] & {
 const { title, description, pubDate, updatedDate, heroImage, minutesRead, canonicalURL } = Astro.props;
 ---
 
-<BaseLayout title={title} description={description} canonicalURL={canonicalURL} image={heroImage}>
+<BaseLayout title={title} description={description} canonicalURL={canonicalURL} image={heroImage} showScrollProgress>
   <slot name="head" slot="head" />
-
-  <ScrollProgress />
 
   <div class="content">
     <div class="hero-image">

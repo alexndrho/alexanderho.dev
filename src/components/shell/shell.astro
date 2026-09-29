@@ -2,15 +2,16 @@
 import { Image } from "astro:assets";
 import { FaAt, FaBarsStaggered, FaGithub, FaLinkedin, FaXmark } from "react-icons/fa6";
 
+import ScrollProgress from "./scroll-progress.astro";
 import Footer from "./footer.astro";
 import { stripTrailingSlash } from "@/utils/string";
 import me from "@assets/me.png";
 
-interface Props {
-  navbarStick?: boolean | undefined;
+export interface Props {
+  showScrollProgress?: boolean | undefined;
 }
 
-const { navbarStick } = Astro.props;
+const { showScrollProgress } = Astro.props;
 
 const currentPath = stripTrailingSlash(Astro.url.pathname);
 
@@ -97,27 +98,31 @@ const menuLinks: { label: string; url: string }[] = [
   </nav>
 
   <div class="shell__content">
-    <nav class:list={["shell__navbar", navbarStick && "shell__navbar--stick"]}>
-      <div class="layout layout--navbar">
-        <div class="shell__logo-container">
-          <button
-            type="button"
-            class="shell__ham-menu btn btn--plain"
-            aria-label="Toggle navigation menu"
-            aria-controls="shell-menu"
-            aria-expanded="false"
-            data-menu-button
-          >
-            <FaBarsStaggered aria-hidden="true" />
-          </button>
+    <header class="shell__header">
+      <nav class="shell__navbar">
+        <div class="layout layout--navbar">
+          <div class="shell__logo-container">
+            <button
+              type="button"
+              class="shell__ham-menu btn btn--plain"
+              aria-label="Toggle navigation menu"
+              aria-controls="shell-menu"
+              aria-expanded="false"
+              data-menu-button
+            >
+              <FaBarsStaggered aria-hidden="true" />
+            </button>
 
-          <a href="/#home" class="shell__logo shell__link link link--dark">
-            <Image src={me} alt="" class="shell__logo-picture" />
-             alexanderho
-          </a>
+            <a href="/#home" class="shell__logo shell__link link link--dark">
+              <Image src={me} alt="" class="shell__logo-picture" />
+               alexanderho
+            </a>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+
+      {showScrollProgress && <ScrollProgress />}
+    </header>
 
     <main class="shell__main">
       <slot />
@@ -176,16 +181,16 @@ const menuLinks: { label: string; url: string }[] = [
     flex: 1;
   }
 
-  .shell__navbar {
+  .shell__header {
+    position: sticky;
+    top: 0;
     z-index: 90;
+  }
+
+  .shell__navbar {
     background-color: var(--color-light);
     border-bottom: var(--border);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
-
-  .shell__navbar--stick {
-    position: sticky;
-    top: 0;
   }
 
   .shell__logo-container {

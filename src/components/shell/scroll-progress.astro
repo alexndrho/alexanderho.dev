@@ -10,9 +10,14 @@
 </div>
 
 <script>
+  let removeScrollListener: (() => void) | null = null;
+
   document.addEventListener("astro:page-load", () => {
-    const bar = document.querySelector(".scroll-progress__bar") as HTMLDivElement | null;
-    const fill = document.querySelector(".scroll-progress__fill") as HTMLDivElement | null;
+    removeScrollListener?.();
+    removeScrollListener = null;
+
+    const bar = document.querySelector<HTMLDivElement>(".scroll-progress__bar");
+    const fill = document.querySelector<HTMLDivElement>(".scroll-progress__fill");
 
     if (!bar || !fill) return;
 
@@ -26,22 +31,18 @@
     };
 
     window.addEventListener("scroll", updateProgress, { passive: true });
+    removeScrollListener = () => window.removeEventListener("scroll", updateProgress);
     updateProgress();
   });
 </script>
 
 <style>
   .scroll-progress__bar {
-    position: fixed;
-    top: 0;
-    left: var(--menu-width, 0);
-    right: 0;
-
-    height: 0.25em;
+    position: absolute;
+    width: 100%;
+    height: 0.25rem;
     background-color: transparent;
-    display: block;
     pointer-events: none;
-    z-index: 100;
     overflow: hidden;
   }
 

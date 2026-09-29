@@ -1,16 +1,15 @@
 ---
 import BaseHead from "@components/base-head.astro";
-import Shell from "@components/shell/shell.astro";
+import Shell, { type Props as ShellProps } from "@components/shell/shell.astro";
 
-export interface Props {
+export interface Props extends ShellProps {
   title?: string | undefined;
   description: string;
   canonicalURL?: string | undefined;
   image?: ImageMetadata | undefined;
-  navbarStick?: boolean | undefined;
 }
 
-const { title, description, canonicalURL, image, navbarStick } = Astro.props;
+const { title, description, canonicalURL, image, ...rest } = Astro.props;
 
 const separator = "-";
 const defaultTitle = `Alexander Gabriel Ho ${separator} Full Stack Web Developer`;
@@ -25,7 +24,7 @@ const pageTitle = title ? `${title} ${separator} ${suffixTitle}` : defaultTitle;
     </BaseHead>
   </head>
   <body>
-    <Shell navbarStick={navbarStick}>
+    <Shell {...rest}>
       <slot />
     </Shell>
   </body>
