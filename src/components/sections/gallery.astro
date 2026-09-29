@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import { TbArrowRight } from "react-icons/tb";
 
-import GalleryPreview from "../GalleryPreview.astro";
+import GalleryPreview from "../gallery-preview.astro";
 
 const gallery = (await getCollection("gallery"))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())

@@ -1,12 +1,12 @@
 ---
-import Layout from "@layouts/Layout.astro";
-import Home from "@components/sections/Home.astro";
-import About from "@components/sections/About.astro";
-import Blog from "@/components/sections/Blog.astro";
-import Projects from "@components/sections/Projects.astro";
-import Gallery from "@/components/sections/Gallery.astro";
-import Certifications from "@components/sections/Certifications.astro";
-import Contact from "@/components/sections/Contact.astro";
+import Layout from "@layouts/layout.astro";
+import Home from "@components/sections/home.astro";
+import About from "@components/sections/about.astro";
+import Blog from "@/components/sections/blog.astro";
+import Projects from "@components/sections/projects.astro";
+import Gallery from "@/components/sections/gallery.astro";
+import Certifications from "@components/sections/certifications.astro";
+import Contact from "@/components/sections/contact.astro";
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const canonicalHref = canonicalURL.toString().replace(/\/$/, "");

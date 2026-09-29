@@ -3,7 +3,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { FaRegPaperPlane } from "react-icons/fa";
 import "react-toastify/dist/ReactToastify.css";
 
-import styles from "@styles/react/ContactForm.module.css";
+import styles from "@styles/react/contact-form.module.css";
 
 interface IFormValues {
   name: string;

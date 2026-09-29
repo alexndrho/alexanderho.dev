@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import { TbArrowRight } from "react-icons/tb";
 
-import BlogPreview from "../BlogPreview.astro";
+import BlogPreview from "../blog-preview.astro";
 
 const blogs = (await getCollection("blog"))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())

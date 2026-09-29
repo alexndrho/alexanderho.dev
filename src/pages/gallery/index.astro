@@ -1,8 +1,8 @@
 ---
 import { getCollection } from "astro:content";
 
-import Layout from "@/layouts/Layout.astro";
-import GalleryPreview from "@/components/GalleryPreview.astro";
+import Layout from "@/layouts/layout.astro";
+import GalleryPreview from "@/components/gallery-preview.astro";
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const canonicalHref = canonicalURL.toString().replace(/\/$/, "");
