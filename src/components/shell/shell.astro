@@ -41,16 +41,10 @@ const menuLinks: { label: string; url: string }[] = [
 
 <div class="shell">
   <nav id="shell-menu" class="shell__menu" data-menu>
-    <div class="shell__menu-header">
-      <a href="/#home" class="shell__logo shell__link link link--dark" data-menu-close-button>
-        <Image src={me} alt="" class="shell__logo-picture" />
-         alexanderho
-      </a>
-
-      <button aria-label="Close navigation menu" data-menu-close-button class="shell__menu-close-btn btn btn--plain">
-        <FaXmark aria-hidden="true" />
-      </button>
-    </div>
+    <a href="/#home" class="shell__logo shell__menu__logo shell__link link link--dark" data-menu-close-button>
+      <Image src={me} alt="" class="shell__logo-picture" />
+       alexanderho
+    </a>
 
     <div class="shell__menu-links">
       <ul class="menu">
@@ -166,6 +160,9 @@ const menuLinks: { label: string; url: string }[] = [
 
 <style>
   .shell {
+    /* Navbar height: logo font size multiplied by the global 1.7 line-height, plus vertical padding. */
+    --shell-navbar-height: calc((var(--font-size-xl) * 1.7) + (var(--spacing-sm) * 2));
+
     display: flex;
     min-height: 100dvh;
   }
@@ -190,7 +187,6 @@ const menuLinks: { label: string; url: string }[] = [
   .shell__navbar {
     background-color: var(--color-light);
     border-bottom: var(--border);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   }
 
   .shell__logo-container {
@@ -226,12 +222,11 @@ const menuLinks: { label: string; url: string }[] = [
     transform: translateX(-100%);
     visibility: hidden;
     pointer-events: none;
-    inset: 0;
+    inset: var(--shell-navbar-height) 0 0;
 
     padding: var(--spacing-md);
     background-color: var(--color-light);
     border-right: var(--border);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 
     display: flex;
     flex-direction: column;
@@ -243,21 +238,15 @@ const menuLinks: { label: string; url: string }[] = [
       visibility 0s linear 0.2s;
   }
 
+  .shell__menu__logo {
+    display: none;
+  }
+
   .shell__menu--show {
     transform: translateX(0);
     visibility: visible;
     pointer-events: auto;
     transition-delay: 0s;
-  }
-
-  .shell__menu-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .shell__menu-close-btn {
-    font-size: var(--font-size-2xl);
   }
 
   .shell__menu-links {
@@ -310,13 +299,13 @@ const menuLinks: { label: string; url: string }[] = [
       pointer-events: auto;
     }
 
+    .shell__menu__logo {
+      display: flex;
+    }
+
     .shell__content {
       margin-left: var(--menu-width);
       width: calc(100% - var(--menu-width));
-    }
-
-    .shell__menu-close-btn {
-      display: none;
     }
 
     :global(html.shell-menu-open) {
