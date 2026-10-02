@@ -37,7 +37,7 @@ const { gallery } = Astro.props;
   .image {
     color: var(--color-dark);
     text-decoration: none;
-    transition: color 0.1s ease-in-out;
+    transition: color var(--transition-duration-md) ease-in-out;
   }
 
   .image:hover .image__hero {

@@ -1,7 +1,7 @@
 .link {
   color: var(--color-primary);
   text-decoration: none;
-  transition: color 0.2s ease-out;
+  transition: color var(--transition-duration-md) ease-out;
 }
 
 .link:hover {
@@ -45,7 +45,7 @@
   font-size: var(--font-size-4xl);
   color: var(--color-dark);
 
-  transition: color 0.1s ease-in-out;
+  transition: color var(--transition-duration-md) ease-in-out;
   cursor: pointer;
 }
 

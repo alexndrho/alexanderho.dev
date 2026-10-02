@@ -60,6 +60,11 @@
   --spacing-lg: 1.25rem;
   --spacing-xl: 2rem;
 
+  /* for transition duration */
+  --transition-duration-sm: 150ms;
+  --transition-duration-md: 200ms;
+  --transition-duration-lg: 300ms;
+
   /* for aspect ratio */
   --aspect-ratio-square: 1 / 1;
   --aspect-ratio-video: 16 / 9;

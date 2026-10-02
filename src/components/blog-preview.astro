@@ -39,7 +39,7 @@ const { blogs } = Astro.props;
   .blog {
     color: var(--color-dark);
     text-decoration: none;
-    transition: color 0.1s ease-in-out;
+    transition: color var(--transition-duration-md) ease-in-out;
   }
 
   .blog:hover {
@@ -49,7 +49,7 @@ const { blogs } = Astro.props;
   .blog__hero {
     aspect-ratio: 2 / 1;
     object-fit: cover;
-    transition: box-shadow 0.1s ease-in-out;
+    transition: box-shadow var(--transition-duration-md) ease-in-out;
   }
 
   .blog:hover .blog__hero {
