@@ -1,7 +1,7 @@
 import type { IconType } from "react-icons";
 import { FaNodeJs, FaReact } from "react-icons/fa6";
 import { TbBrandMantine, TbBrandMongodb, TbBrandNextjs, TbSettings } from "react-icons/tb";
-import { SiExpress, SiNeovim, SiNiri, SiSocketdotio, SiTailwindcss, SiWayland, SiZsh } from "react-icons/si";
+import { SiExpress, SiNeovim, SiNiri, SiRedis, SiSocketdotio, SiTailwindcss, SiWayland, SiZsh } from "react-icons/si";
 import { BiLogoPostgresql } from "react-icons/bi";
 import { MdCable } from "react-icons/md";
 import { RxStitchesLogo } from "react-icons/rx";
@@ -37,6 +37,7 @@ export const projects: ProjectType[] = [
     techStack: [
       { icon: TbBrandNextjs, tech: "Next.js" },
       { icon: BiLogoPostgresql, tech: "PostgreSQL" },
+      { icon: SiRedis, tech: "Redis" },
     ],
     liveLink: "https://stickythoughts.app",
   },
