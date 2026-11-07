@@ -44,7 +44,7 @@ export const projects: ProjectType[] = [
 
   {
     type: "desktop",
-    title: "dotfiles",
+    title: "larpfiles",
     description:
       "A keyboard-driven desktop shell for Linux, with dynamic theming, smooth animations, and a collection of configurations",
     image: dotfilesPreview,
@@ -56,7 +56,7 @@ export const projects: ProjectType[] = [
       { icon: SiZsh, tech: "Zsh" },
       { icon: SiNeovim, tech: "Neovim" },
     ],
-    sourceLink: "https://github.com/alexndrho/dotfiles",
+    sourceLink: "https://github.com/alexndrho/larpfiles",
   },
 
   {
